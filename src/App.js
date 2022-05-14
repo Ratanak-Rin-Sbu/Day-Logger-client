@@ -1,37 +1,39 @@
-import LogDay from './Components/LogDay';
-import EditQuestions from './Components/EditQuestions';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+import Login from './Components/Login';
+import Home from './Home';
 
 function App() {
-	const [isLogDay, setIsLogDay] = useState(false);
-	const [isEditQeustions, setIsEditQuestions] = useState(false);
+	const [profile, setProfile] = useState();
+	const [isLogin, setIsLogin] = useState(true);
 
-	const openLogDay = () => {
-		setIsLogDay(true);
-		setIsEditQuestions(false);
-	};
-
-	const openEditQuestions = () => {
-		setIsLogDay(false);
-		setIsEditQuestions(true);
-	};
+	// NOTE autoLogin
+	// useEffect(() => {
+	// 	const autoLogin = async () => {
+	// 		try {
+	// 			const user = await getUserByIdAPIMethod();
+	// 			if (user) {
+	// 				setProfile(user);
+	// 			}
+	// 		} catch (e) {
+	// 			console.log('there is no such session or expired');
+	// 			return;
+	// 		}
+	// 	};
+	// 	autoLogin();
+	// }, []);
 
 	return (
 		<>
-			<button className="btn-Home" id="btn-open-log-day" onClick={openLogDay}>
-				Log Day
-			</button>
-
-			<button
-				className="btn-Home"
-				id="btn-open-edit-questions"
-				onClick={openEditQuestions}
-			>
-				Edit Questions
-			</button>
-
-			{isLogDay && <LogDay />}
-			{isEditQeustions && <EditQuestions />}
+			{profile ? (
+				<Home
+					profile={profile}
+					setProfile={setProfile}
+					setIsLogin={setIsLogin}
+				/>
+			) : isLogin ? (
+				<Login setProfile={setProfile} setIsLogin={setIsLogin} />
+			) : null}
 		</>
 	);
 }
