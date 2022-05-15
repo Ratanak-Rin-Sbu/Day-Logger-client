@@ -227,7 +227,7 @@ h2 {
 }
 
 #btn-open-log-day {
-	background-color: white;
+	background-color: red;
 }
 
 @media screen and (max-width: 500px) {
