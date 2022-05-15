@@ -36,7 +36,6 @@ button:hover {
 	transform: scale(1.1);
 }
 
-
 #wrapper-login {
 	position: absolute;
 	left: 50%;
@@ -233,4 +232,22 @@ h2 {
 		border-radius: 0px;
 		/* background-color: red; */
 	}
+}
+
+#button-profile {
+	display: inline-flex;
+	align-items: center;
+	height: 100%;
+	margin: 5px;
+	padding: 4px;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	pointer-events: all;
+}
+
+.image-profile {
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
 }

@@ -49,13 +49,13 @@ function Home(profile, setProfile, setIsLogin) {
 					View Data
 				</label>
 				<button
-					className="button-profile"
+					className="image-profile"
 					id="button-profile"
 					type="button"
 					// onClick={openModal}
-				>image
-					<imgage
-						className="profile-picture"
+				>
+					<img
+						className="image-profile"
 						src={
 							// profile?.profileImageUrl ||
 							`${process.env.PUBLIC_URL}/assets/images/cat1.jpg`
