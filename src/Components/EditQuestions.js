@@ -1,20 +1,20 @@
-import Questions from "./Questions";
+// import Questions from "./Questions";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import { useState } from "react";
 
-function EditQuestions({  }) {
-
+function EditQuestions() {
 	return (
 		<div className="edit-questions">
 			<div className="sect1">
 				<h2 className="main-title">Edit Questions</h2>
-				<div><AddCircleOutlineIcon className="materialIcons" /></div>
+				<div>
+					<AddCircleOutlineIcon className="materialIcons" />
+				</div>
 			</div>
 			<div className="sect2">
+				{/* <Questio              ns />
 				<Questions />
 				<Questions />
-				<Questions />
-				<Questions />
+				<Questions /> */}
 			</div>
 		</div>
 	);
