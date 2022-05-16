@@ -327,3 +327,60 @@ h2 {
 	font-size: 26px;
 	font-weight: 900;
 }
+
+/* NOTE Edit Questions section */
+.edit-questions {
+	padding: 30px 10%;
+}
+
+.edit-questions .sect1 {
+	display: flex;
+	justify-content: space-between;
+}
+
+.edit-questions .sect1 .main-title {
+	margin-bottom: 20px;
+}
+
+/* NOTE Questions component */
+.questions {
+	background-color: white;
+	border-radius: 10px;
+	padding: 20px 30px;
+	height: 100%;
+	margin-bottom: 15px;
+}
+
+.input-question {
+	resize: none;
+	height: 28px;
+	width: 80%;
+	margin-bottom: 10px;
+	border-radius: 5px;
+}
+
+.question-types {
+	height: 28px;
+	width: 40%;
+	border-radius: 5px;
+	margin-bottom: 20px;
+}
+
+.questions .sect1 {
+	display: flex;
+	justify-content: space-between;
+}
+
+.choice {
+	display: flex;
+	justify-content: flex-start;
+}
+
+.input-choice {
+	outline: 0;
+	border-width: 0 0 2px;
+	width: 80%;
+	height: 20px;
+	resize: none;
+	margin: 0 0 10px 10px;
+}
