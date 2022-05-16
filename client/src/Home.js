@@ -31,12 +31,16 @@ function Home(profile, setProfile, setIsLogin) {
 			<div className="header">
 				<h1 id="main-title">Day Logger</h1>
 				<div className="navigation">
-					<label className={`btn-home ${isLogDay ? "active": ""}`} id="btn-open-log-day" onClick={openLogDay}>
+					<label
+						className={`btn-home ${isLogDay ? 'active' : ''}`}
+						id="btn-open-log-day"
+						onClick={openLogDay}
+					>
 						Log Day
 					</label>
 
 					<label
-						className={`btn-home ${isEditQuestions ? "active": ""}`}
+						className={`btn-home ${isEditQuestions ? 'active' : ''}`}
 						id="btn-open-edit-questions"
 						onClick={openEditQuestions}
 					>
@@ -44,7 +48,7 @@ function Home(profile, setProfile, setIsLogin) {
 					</label>
 
 					<label
-						className={`btn-home ${isViewData ? "active": ""}`}
+						className={`btn-home ${isViewData ? 'active' : ''}`}
 						id="btn-open-view-data"
 						onClick={openViewData}
 					>
@@ -52,19 +56,19 @@ function Home(profile, setProfile, setIsLogin) {
 					</label>
 				</div>
 				<button
+					className="image-profile"
+					id="button-profile"
+					type="button"
+					// onClick={openModal}
+				>
+					<img
 						className="image-profile"
-						id="button-profile"
-						type="button"
-						// onClick={openModal}
-					>
-						<img
-							className="image-profile"
-							src={
-								// profile?.profileImageUrl ||
-								`${process.env.PUBLIC_URL}/assets/images/cat1.jpg`
-							}
-						/>
-					</button>
+						src={
+							// profile?.profileImageUrl ||
+							`${process.env.PUBLIC_URL}/assets/images/cat1.jpg`
+						}
+					/>
+				</button>
 			</div>
 
 			{isLogDay && <LogDay />}
