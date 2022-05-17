@@ -1,4 +1,4 @@
-// import Questions from "./Questions";
+import Questions from './Questions';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 function EditQuestions() {
@@ -11,10 +11,10 @@ function EditQuestions() {
 				</div>
 			</div>
 			<div className="sect2">
-				{/* <Questio              ns />
 				<Questions />
 				<Questions />
-				<Questions /> */}
+				<Questions />
+				<Questions />
 			</div>
 		</div>
 	);
