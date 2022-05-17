@@ -2,49 +2,51 @@ function Profile() {
 	return (
 		<form className="profile-form">
 			<h1>Edit Profile</h1>
-			<div className="profile-image">
+			<div className="profile profile-image">
 				<label>
-					<b>Profile Photo</b>s
+					<h2 className="main-title">Profile Photo</h2>
 				</label>
-				<div className="img">
-					<img
-						className="image-profile"
-						alt="user-profile"
-						src={
-							// profile?.profileImageUrl ||
-							`${process.env.PUBLIC_URL}/assets/images/cat1.jpg`
-						}
-					/>
-				</div>
+				<div className="sect1">
+					<div className="img">
+						<img
+							className="image-profile"
+							alt="user-profile"
+							src={
+								// profile?.profileImageUrl ||
+								`${process.env.PUBLIC_URL}/assets/images/cat1.jpg`
+							}
+						/>
+					</div>
 
-				<div className="input-image">
-					<input
-						type="file"
-						name="image"
-						accept="image/*"
-						id="cloudinary"
-						// onChange={handleImageSelected}
-						style={{ display: 'none' }}
-					/>
+					<div className="input-image">
+						<input
+							type="file"
+							name="image"
+							accept="image/*"
+							id="cloudinary"
+							// onChange={handleImageSelected}
+							style={{ display: 'none' }}
+						/>
+						<button
+							// ref={imageUploadButtonRef}
+							id="btn-add-image"
+							// onClick={handleClickImageInput}
+						>
+							Choose new image
+						</button>
+					</div>
 					<button
-						// ref={imageUploadButtonRef}
-						id="btn-add-image"
-						// onClick={handleClickImageInput}
+						id="btn-remove-image"
+						// onClick={handleRemoveImage}
 					>
-						Choose new image
+						Remove image
 					</button>
 				</div>
-				<button
-					id="btn-remove-image"
-					// onClick={handleRemoveImage}
-				>
-					Remove image
-				</button>
 			</div>
 
-			<div className="profile-info">
+			<div className="profile profile-name">
 				<label>
-					<b>Name</b>
+					<h2 className="main-title">Name</h2>
 				</label>
 				<input
 					className="input-name"
@@ -55,8 +57,11 @@ function Profile() {
 					// 	handleProfileName(e.target.value);
 					// }}
 				/>
+			</div>
+
+			<div className="profile profile-email">
 				<label>
-					<b>Email</b>
+					<h2 className="main-title">Email</h2>
 				</label>
 				<input
 					className="input-email"
@@ -67,8 +72,11 @@ function Profile() {
 					// 	handleProfileEmail(e.target.value);
 					// }}
 				/>
+			</div>
+
+			<div className="profile profile-address">
 				<label>
-					<b>Address</b>
+					<h2 className="main-title">Address</h2>
 				</label>
 				<input
 					className="input-address"

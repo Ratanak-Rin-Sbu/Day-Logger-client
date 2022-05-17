@@ -16,6 +16,11 @@ function EditQuestions() {
 				<Questions />
 				<Questions />
 			</div>
+			<input
+					className="save-questions"
+					type="submit"
+					value="Save"
+			/>
 		</div>
 	);
 }

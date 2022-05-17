@@ -342,6 +342,16 @@ h2 {
 	margin-bottom: 20px;
 }
 
+.save-questions {
+	border: none;
+	border-radius: 10px;
+	padding: 10px 20px;
+	color: whitesmoke;
+	background-color: #f76b8a;
+	font-size: 18px;
+	margin-top: 10px;
+}
+
 /* NOTE Questions component */
 .questions {
 	background-color: white;
@@ -385,3 +395,84 @@ h2 {
 	margin: 0 0 10px 10px;
 }
 
+/* NOTE Profile section */
+.profile {
+	background-color: white;
+	height: 100%;
+	border-radius: 10px;
+	margin-bottom: 20px;
+	padding: 20px;
+}
+
+.profile-form {
+	padding: 30px 10%;
+}
+
+.profile .main-title{
+	display: flex;
+	justify-content: flex-start;
+	margin-bottom: 10px
+}
+
+.profile-image {
+	margin-top: 10px;
+}
+
+.profile-image .sect1 {
+	display: flex;
+	justify-content: space-between;
+}
+
+.input-image {
+	background-color: #2b9494;
+	border-radius: 8px;
+	padding: 10px
+}
+
+#btn-add-image {
+	border: none;
+	background-color: #2b9494;
+}
+
+#btn-remove-image {
+	border: none;
+	background-color: white;
+	text-decoration: underline;
+}
+
+::placeholder {
+	color: black;
+}
+
+.input-name, .input-email, .input-address {
+	padding: 10px;
+	border-radius: 5px;
+	width: 80%;
+	color: black;
+}
+
+.input-address {
+	margin-bottom: 15px;
+}
+
+.profile-bottom {
+	padding: 20px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.input-save {
+	border: none;
+	border-radius: 10px;
+	padding: 15px 40px;
+	color: whitesmoke;
+	background-color: #f76b8a;
+	font-size: 22px;
+}
+
+.button-logout {
+	border: none;
+	background-color: #eaf6f6;
+	text-decoration: underline;
+	font-size: 18px;
+}
