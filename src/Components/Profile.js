@@ -1,24 +1,15 @@
 function Profile() {
-  return (
-    <form className="profile-form">
-			<div className="profile-nav">
-				<h1>Edit Profile</h1>
-				<button
-					className="button-close"
-					id="button-close"
-					// onClick={handleClose}
-					// ref={closeButtonRef}
-				>
-					X
-				</button>
-			</div>
-
+	return (
+		<form className="profile-form">
+			<h1>Edit Profile</h1>
 			<div className="profile-image">
+				<label>
+					<b>Profile Photo</b>s
+				</label>
 				<div className="img">
 					<img
-						className="profile-picture"
-            id="profile-profile"
-            alt="user-profile"
+						className="image-profile"
+						alt="user-profile"
 						src={
 							// profile?.profileImageUrl ||
 							`${process.env.PUBLIC_URL}/assets/images/cat1.jpg`
@@ -40,13 +31,14 @@ function Profile() {
 						id="btn-add-image"
 						// onClick={handleClickImageInput}
 					>
-						Add Image
+						Choose new image
 					</button>
 				</div>
-        <button id="btn-remove-image"
-          // onClick={handleRemoveImage}
-        >
-					Remove Image
+				<button
+					id="btn-remove-image"
+					// onClick={handleRemoveImage}
+				>
+					Remove image
 				</button>
 			</div>
 
@@ -76,8 +68,26 @@ function Profile() {
 					// }}
 				/>
 				<label>
-					<b>Adress</b>
+					<b>Address</b>
 				</label>
+				<input
+					className="input-address"
+					type="text"
+					placeholder="119 songdo moonwha-ro"
+					// defaultValue={profile.name}
+					// onChange={(e) => {
+					// 	handleProfileName(e.target.value);
+					// }}
+				/>
+				<input
+					className="input-address"
+					type="text"
+					placeholder="Incheon, Yeonsu-gu, Korea"
+					// defaultValue={profile.name}
+					// onChange={(e) => {
+					// 	handleProfileName(e.target.value);
+					// }}
+				/>
 			</div>
 
 			<div className="profile-bottom">
@@ -89,14 +99,16 @@ function Profile() {
 					// onClick={handleSaveClick}
 				/>
 				{/* <button className="button-save" onClick={handleSaveClick}>Save</button> */}
-        <button className="button-logout" type="button"
-          // onClick={handleLogout}
-        >
+				<button
+					className="button-logout"
+					type="button"
+					// onClick={handleLogout}
+				>
 					Logout
 				</button>
 			</div>
 		</form>
-  )
+	);
 }
 
 export default Profile;
