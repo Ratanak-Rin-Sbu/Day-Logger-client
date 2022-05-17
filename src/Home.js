@@ -2,28 +2,40 @@ import { useState } from 'react';
 import LogDay from './Components/LogDay';
 import EditQuestions from './Components/EditQuestions';
 import ViewData from './Components/ViewData';
+import Profile from './Components/Profile';
 
 function Home(profile, setProfile, setIsLogin) {
-	const [isLogDay, setIsLogDay] = useState(true);
-	const [isEditQuestions, setIsEditQuestions] = useState(false);
-	const [isViewData, setIsViewData] = useState(false);
+	const [isLogDayPage, setIsLogDayPage] = useState(true);
+	const [isEditQuestionsPage, setIsEditQuestionsPage] = useState(false);
+	const [isViewDataPage, setIsViewDataPage] = useState(false);
+	const [isProfilePage, setIsProfilePage] = useState(false);
 
 	const openLogDay = () => {
-		setIsLogDay(true);
-		setIsEditQuestions(false);
-		setIsViewData(false);
+		setIsLogDayPage(true);
+		setIsEditQuestionsPage(false);
+		setIsViewDataPage(false);
+		setIsProfilePage(false);
 	};
 
 	const openEditQuestions = () => {
-		setIsLogDay(false);
-		setIsEditQuestions(true);
-		setIsViewData(false);
+		setIsLogDayPage(false);
+		setIsEditQuestionsPage(true);
+		setIsViewDataPage(false);
+		setIsProfilePage(false);
 	};
 
 	const openViewData = () => {
-		setIsLogDay(false);
-		setIsEditQuestions(false);
-		setIsViewData(true);
+		setIsLogDayPage(false);
+		setIsEditQuestionsPage(false);
+		setIsViewDataPage(true);
+		setIsProfilePage(false);
+	};
+
+	const openProfile = () => {
+		setIsLogDayPage(false);
+		setIsEditQuestionsPage(false);
+		setIsViewDataPage(false);
+		setIsProfilePage(true);
 	};
 
 	return (
@@ -32,7 +44,7 @@ function Home(profile, setProfile, setIsLogin) {
 				<h1 id="main-title">Day Logger</h1>
 				<div className="navigation">
 					<label
-						className={`btn-home ${isLogDay ? 'active' : ''}`}
+						className={`btn-home ${isLogDayPage ? 'active' : ''}`}
 						id="btn-open-log-day"
 						onClick={openLogDay}
 					>
@@ -40,7 +52,7 @@ function Home(profile, setProfile, setIsLogin) {
 					</label>
 
 					<label
-						className={`btn-home ${isEditQuestions ? 'active' : ''}`}
+						className={`btn-home ${isEditQuestionsPage ? 'active' : ''}`}
 						id="btn-open-edit-questions"
 						onClick={openEditQuestions}
 					>
@@ -48,7 +60,7 @@ function Home(profile, setProfile, setIsLogin) {
 					</label>
 
 					<label
-						className={`btn-home ${isViewData ? 'active' : ''}`}
+						className={`btn-home ${isViewDataPage ? 'active' : ''}`}
 						id="btn-open-view-data"
 						onClick={openViewData}
 					>
@@ -59,6 +71,7 @@ function Home(profile, setProfile, setIsLogin) {
 					className="image-profile"
 					id="button-profile"
 					type="button"
+					onClick={openProfile}
 					// onClick={openModal}
 				>
 					<img
@@ -71,9 +84,10 @@ function Home(profile, setProfile, setIsLogin) {
 				</button>
 			</div>
 
-			{isLogDay && <LogDay />}
-			{isEditQuestions && <EditQuestions />}
-			{isViewData && <ViewData />}
+			{isLogDayPage && <LogDay />}
+			{isEditQuestionsPage && <EditQuestions />}
+			{isViewDataPage && <ViewData />}
+			{isProfilePage && <Profile />}
 		</>
 	);
 }

@@ -1,11 +1,11 @@
-function LogDay({ isLogDay }) {
+function LogDay({ isLogDayPage }) {
 	return (
 		<div className="logday-wrapper">
-			<div className='date-wrapper'>
-        <button className='btn-prev-date'>{"<"}</button>
-        <div className='displaying-date'>3/1/2021</div>
-        <button className='btn-next-date'>{">"}</button>
-      </div>
+			<div className="date-wrapper">
+				<button className="btn-prev-date">{'<'}</button>
+				<div className="displaying-date">3/1/2021</div>
+				<button className="btn-next-date">{'>'}</button>
+			</div>
 		</div>
 	);
 }
