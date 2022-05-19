@@ -382,8 +382,12 @@ h2 {
 }
 
 .choice {
-	display: flex;
-	justify-content: flex-start;
+	display: none;
+}
+
+.choice.active {
+	display: flex !important;
+	justify-content: flex-start !important;
 }
 
 .input-choice {

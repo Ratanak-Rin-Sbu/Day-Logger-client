@@ -6,8 +6,6 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 const Questions = () => {
   const [question, setQuestion] = useState();
 
-  console.log(question);
-
   if (question === 'multiple-choice') {
     return (
       <div className='questions'>
