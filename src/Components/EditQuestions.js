@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
@@ -162,7 +161,7 @@ function EditQuestions() {
 
 	return (
 		<div className="edit-questions">
-			<div className="sect1">
+			<div className="edit-questions-header">
 				<h2 className="main-title">Edit Questions</h2>
 				<div>
 					<AddCircleOutlineIcon
@@ -172,7 +171,7 @@ function EditQuestions() {
 				</div>
 			</div>
 
-			<div className="sect2">
+			<div className="questions-list">
 				{questions.map((question) => (
 					<div className="questions" key={question._id}>
 						<textarea
@@ -181,7 +180,7 @@ function EditQuestions() {
 						>
 							{question.text}
 						</textarea>
-						<div className="sect1">
+						<div className="edit-questions-header">
 							<select
 								className="question-types"
 								defaultValue={question.type}

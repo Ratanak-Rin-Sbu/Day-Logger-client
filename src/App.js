@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-
 import Login from './Components/Login';
 import Home from './Home';
 
@@ -7,7 +6,8 @@ function App() {
 	const [profile, setProfile] = useState();
 	const [isLogin, setIsLogin] = useState(true);
 
-	// NOTE autoLogin
+  // REVIEW source form previous assignment; review and change before use
+  // NOTE autoLogin function
 	// useEffect(() => {
 	// 	const autoLogin = async () => {
 	// 		try {

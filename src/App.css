@@ -333,12 +333,12 @@ h2 {
 	padding: 30px 10%;
 }
 
-.edit-questions .sect1 {
+.edit-questions .edit-questions-header {
 	display: flex;
 	justify-content: space-between;
 }
 
-.edit-questions .sect1 .main-title {
+.edit-questions .edit-questions-header .main-title {
 	margin-bottom: 20px;
 }
 
@@ -376,7 +376,7 @@ h2 {
 	margin-bottom: 20px;
 }
 
-.questions .sect1 {
+.questions .edit-questions-header {
 	display: flex;
 	justify-content: space-between;
 }
@@ -412,17 +412,17 @@ h2 {
 	padding: 30px 10%;
 }
 
-.profile .main-title{
+.profile .main-title {
 	display: flex;
 	justify-content: flex-start;
-	margin-bottom: 10px
+	margin-bottom: 10px;
 }
 
 .profile-image {
 	margin-top: 10px;
 }
 
-.profile-image .sect1 {
+.profile-image .edit-questions-header {
 	display: flex;
 	justify-content: space-between;
 }
@@ -430,7 +430,7 @@ h2 {
 .input-image {
 	background-color: #2b9494;
 	border-radius: 8px;
-	padding: 10px
+	padding: 10px;
 }
 
 #btn-add-image {
@@ -448,7 +448,9 @@ h2 {
 	color: black;
 }
 
-.input-name, .input-email, .input-address {
+.input-name,
+.input-email,
+.input-address {
 	padding: 10px;
 	border-radius: 5px;
 	width: 80%;
