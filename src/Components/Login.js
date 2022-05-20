@@ -27,21 +27,17 @@ function Login({ setProfile, setIsLogin }) {
 	};
 
 	// const login = async () => {
-	// 	try {
-	// 		const user = await loginUserAPIMethod({
-	// 			email: loginEmail,
-	// 			password: loginPassword,
-	// 		});
-	// 		console.log('user: ', user);
-	// 		setUser(user);
-	// 	} catch (e) {
-	// 		console.log(e);
-	// 		document.getElementById('login-error-msg').style.display = 'block';
-	// 	}
-	// };
-
-	// const displayRegisterPage = () => {
-	// 	setIsLogine(false);
+	// try {
+	// 	const user = await loginUserAPIMethod({
+	// 		email: loginEmail,
+	// 		password: loginPassword,
+	// 	});
+	// 	console.log('user: ', user);
+	// 	setUser(user);
+	// } catch (e) {
+	// 	console.log(e);
+	// 	document.getElementById('login-error-msg').style.display = 'block';
+	// }
 	// };
 
 	return (

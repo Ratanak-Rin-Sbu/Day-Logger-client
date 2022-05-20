@@ -87,7 +87,9 @@ function Home(profile, setProfile, setIsLogin) {
 			{isLogDayPage && <LogDay />}
 			{isEditQuestionsPage && <EditQuestions />}
 			{isViewDataPage && <ViewData />}
-			{isProfilePage && <Profile />}
+			{isProfilePage && (
+				<Profile setProfile={setProfile} setIsLogin={setIsLogin} />
+			)}
 		</>
 	);
 }

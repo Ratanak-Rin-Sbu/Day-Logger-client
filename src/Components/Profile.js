@@ -1,4 +1,13 @@
-function Profile() {
+function Profile(setProfile, setIsLogin) {
+	// const handleLogout = () => {
+	// 	console.log('user logged out');
+	// 	// await logoutUserAPIMethod({
+	// 	// 	profile,
+	// 	// });
+	// 	setProfile(false);
+	// 	setIsLogin(true);
+	// };
+
 	return (
 		<form className="profile-form">
 			<h1>Edit Profile</h1>
