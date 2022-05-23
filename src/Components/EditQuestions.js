@@ -180,7 +180,7 @@ function EditQuestions() {
 						>
 							{question.text}
 						</textarea>
-						<div className="edit-questions-header">
+						<div className="questions-header">
 							<select
 								className="question-types"
 								defaultValue={question.type}

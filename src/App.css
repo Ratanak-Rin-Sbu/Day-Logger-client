@@ -352,7 +352,6 @@ h2 {
 	margin-top: 10px;
 }
 
-/* NOTE Questions component */
 .questions {
 	background-color: white;
 	border-radius: 10px;
@@ -376,7 +375,7 @@ h2 {
 	margin-bottom: 20px;
 }
 
-.questions .edit-questions-header {
+.questions .questions-header {
 	display: flex;
 	justify-content: space-between;
 }
@@ -422,7 +421,7 @@ h2 {
 	margin-top: 10px;
 }
 
-.profile-image .edit-questions-header {
+.profile-image .profile-picture-header {
 	display: flex;
 	justify-content: space-between;
 }

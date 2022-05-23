@@ -15,7 +15,7 @@ function Profile(setProfile, setIsLogin) {
 				<label>
 					<h2 className="main-title">Profile Photo</h2>
 				</label>
-				<div className="edit-questions-header">
+				<div className="profile-picture-header">
 					<div className="img">
 						<img
 							className="image-profile"
