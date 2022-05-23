@@ -352,7 +352,7 @@ h2 {
 	margin-top: 10px;
 }
 
-.questions {
+.question {
 	background-color: white;
 	border-radius: 10px;
 	padding: 20px 30px;
@@ -375,7 +375,7 @@ h2 {
 	margin-bottom: 20px;
 }
 
-.questions .questions-header {
+.question .question-header {
 	display: flex;
 	justify-content: space-between;
 }

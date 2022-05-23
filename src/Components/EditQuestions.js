@@ -173,14 +173,13 @@ function EditQuestions() {
 
 			<div className="questions-list">
 				{questions.map((question) => (
-					<div className="questions" key={question._id}>
-						<textarea
+					<div className="question" key={question._id}>
+						<input
 							className="input-question"
+							value={question.text}
 							onChange={(e) => editText(e.target.value, question._id)}
-						>
-							{question.text}
-						</textarea>
-						<div className="questions-header">
+						/>
+						<div className="question-header">
 							<select
 								className="question-types"
 								defaultValue={question.type}
@@ -203,12 +202,11 @@ function EditQuestions() {
 							}`}
 						>
 							<input type="radio"></input>
-							<textarea
+							<input
 								className="input-choice"
+								value={question.choices[0]}
 								onChange={(e) => editChoices0(e.target.value, question._id)}
-							>
-								{question.choices[0]}
-							</textarea>
+							/>
 						</div>
 						<div
 							className={`choice ${
@@ -216,12 +214,11 @@ function EditQuestions() {
 							}`}
 						>
 							<input type="radio"></input>
-							<textarea
+							<input
 								className="input-choice"
+								value={question.choices[1]}
 								onChange={(e) => editChoices1(e.target.value, question._id)}
-							>
-								{question.choices[1]}
-							</textarea>
+							/>
 						</div>
 						<div
 							className={`choice ${
@@ -229,17 +226,17 @@ function EditQuestions() {
 							}`}
 						>
 							<input type="radio"></input>
-							<textarea
+							<input
 								className="input-choice"
+								value={question.choices[2]}
 								onChange={(e) => editChoices2(e.target.value, question._id)}
-							>
-								{question.choices[2]}
-							</textarea>
+							/>
 						</div>
 					</div>
 				))}
 			</div>
 
+			{/* REVIEW we might need to delete this button if we follow "onChange->save to DB" system */}
 			<input
 				className="save-questions"
 				type="submit"
