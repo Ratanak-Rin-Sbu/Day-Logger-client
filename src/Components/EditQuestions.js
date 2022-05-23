@@ -102,7 +102,7 @@ function EditQuestions() {
 		setQuestions([...questions]);
 	};
 
-	const addQuestion = async () => {
+	const addQuestionAPIMethod = async () => {
 		const data = await fetch('http://localhost:5000/api/questions', {
 			method: 'POST',
 			headers: {
@@ -166,7 +166,7 @@ function EditQuestions() {
 				<div>
 					<AddCircleOutlineIcon
 						className="materialIcons"
-						onClick={addQuestion}
+						onClick={addQuestionAPIMethod}
 					/>
 				</div>
 			</div>
