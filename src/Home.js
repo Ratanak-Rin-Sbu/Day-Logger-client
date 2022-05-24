@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import LogDay from './Components/LogDay';
-import EditQuestions from './Components/EditQuestions';
-import ViewData from './Components/ViewData';
-import Profile from './Components/Profile';
+import LogDay from './components/LogDay';
+import EditQuestions from './components/EditQuestions';
+import ViewData from './components/ViewData';
+import Profile from './components/Profile';
 
 function Home(profile, setProfile, setIsLogin) {
 	const [isLogDayPage, setIsLogDayPage] = useState(true);

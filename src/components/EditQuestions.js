@@ -2,12 +2,16 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { deleteQuestionAPIMethod, getQuestionsAPIMethod } from '../api/client';
 
 function EditQuestions() {
 	const [questions, setQuestions] = useState([]);
 
 	useEffect(() => {
 		GetQuestions();
+		// getQuestionsAPIMethod().then((questions) => {
+		// 	setQuestions(questions);
+		// });
 	}, []);
 
 	const GetQuestions = () => {
@@ -68,6 +72,28 @@ function EditQuestions() {
 		setQuestions([...questions]);
 	};
 
+	const editChoices0_fix = (option, id) => {
+		// const editedQuestions = [...questions];
+		// const editedQuestion = {
+		//   ...questions[0],
+		//   option
+		// };
+		for (var i = 0; i < questions.length; i++) {
+			if (questions[i]._id === id) {
+				questions[i].choices[0] = option;
+				const data = {
+					// _id: id,
+					text: questions[i].text,
+					type: questions[i].type,
+					date: questions[i].date,
+					choices: [option],
+				};
+				saveUpdatedQuestion(data);
+			}
+		}
+		setQuestions([...questions]);
+	};
+
 	const editChoices1 = (option, id) => {
 		for (var i = 0; i < questions.length; i++) {
 			if (questions[i]._id === id) {
@@ -102,7 +128,7 @@ function EditQuestions() {
 		setQuestions([...questions]);
 	};
 
-	const addQuestionAPIMethod = async () => {
+	const addQuestion = async () => {
 		const data = await fetch('http://localhost:5000/api/questions', {
 			method: 'POST',
 			headers: {
@@ -111,7 +137,11 @@ function EditQuestions() {
 			body: JSON.stringify({
 				text: '',
 				type: 'number',
-				date: new Date().getDay(),
+				date: new Date().toLocaleString('en-US', {
+					year: 'numeric',
+					month: 'numeric',
+					day: 'numeric',
+				}),
 				choices: ['', '', ''],
 			}),
 		}).then((res) => res.json());
@@ -159,6 +189,12 @@ function EditQuestions() {
 		setQuestions(questions.filter((question) => question._id !== idToDelete));
 	};
 
+	const handleDeleteQeustion = async (questionIdToDelete) => {
+		await deleteQuestionAPIMethod(questionIdToDelete);
+		const fetchedQuestions = getQuestionsAPIMethod();
+		setQuestions(fetchedQuestions);
+	};
+
 	return (
 		<div className="edit-questions">
 			<div className="edit-questions-header">
@@ -166,7 +202,7 @@ function EditQuestions() {
 				<div>
 					<AddCircleOutlineIcon
 						className="materialIcons"
-						onClick={addQuestionAPIMethod}
+						onClick={addQuestion}
 					/>
 				</div>
 			</div>
@@ -193,6 +229,7 @@ function EditQuestions() {
 							<div>
 								<DeleteOutlineIcon
 									onClick={(e) => deleteQuestion(question._id)}
+									// onClick={(e) => handleDeleteQeustion(question._id)}
 								/>
 							</div>
 						</div>
