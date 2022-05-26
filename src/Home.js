@@ -75,8 +75,8 @@ function Home(profile, setProfile, setIsLogin) {
 					// onClick={openModal}
 				>
 					<img
-            className="image-profile"
-            alt='user-profile-pic'
+						className="image-profile"
+						alt="user-profile-pic"
 						src={
 							// profile?.profileImageUrl ||
 							`${process.env.PUBLIC_URL}/assets/images/cat1.jpg`
@@ -89,7 +89,11 @@ function Home(profile, setProfile, setIsLogin) {
 			{isEditQuestionsPage && <EditQuestions />}
 			{isViewDataPage && <ViewData />}
 			{isProfilePage && (
-				<Profile setProfile={setProfile} setIsLogin={setIsLogin} />
+				<Profile
+					profile={profile}
+					setProfile={setProfile}
+					setIsLogin={setIsLogin}
+				/>
 			)}
 		</>
 	);

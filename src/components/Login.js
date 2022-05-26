@@ -1,6 +1,6 @@
 // import React, { useState } from 'react';
 import { useState } from 'react';
-// import { loginUserAPIMethod } from '../api/client';
+import { loginUserAPIMethod } from '../api/client';
 import Register from './Register';
 
 function Login({ setProfile, setIsLogin }) {
@@ -9,36 +9,39 @@ function Login({ setProfile, setIsLogin }) {
 	const loginErrorMsg = document.getElementById('login-error-msg');
 	const [show, setShow] = useState(false);
 
-	// console.log('LOGIN PAGE');
-
 	const onChangeEmail = (event) => {
 		// loginErrorMsg.style.display = 'none';
 		document.getElementById('login-error-msg').style.display = 'none';
 		let loginEmail = event.target.value;
+		console.log(
+			'🚀 ~ file: Login.js ~ line 16 ~ onChangeEmail ~ loginEmail',
+			loginEmail
+		);
 		setLoginEmail(loginEmail);
 	};
 
 	const onChangePassword = (event) => {
 		// loginErrorMsg.style.display = 'none';
 		document.getElementById('login-error-msg').style.display = 'none';
-
 		let loginPassword = event.target.value;
 		setLoginPassword(loginPassword);
 	};
 
-	// const login = async () => {
-	// try {
-	// 	const user = await loginUserAPIMethod({
-	// 		email: loginEmail,
-	// 		password: loginPassword,
-	// 	});
-	// 	console.log('user: ', user);
-	// 	setUser(user);
-	// } catch (e) {
-	// 	console.log(e);
-	// 	document.getElementById('login-error-msg').style.display = 'block';
-	// }
-	// };
+	const login = async () => {
+		setProfile(true);
+		setIsLogin(false);
+		try {
+			const user = await loginUserAPIMethod({
+				email: loginEmail,
+				password: loginPassword,
+			});
+			console.log('user: ', user);
+			setProfile(user);
+		} catch (e) {
+			console.log(e);
+			document.getElementById('login-error-msg').style.display = 'block';
+		}
+	};
 
 	return (
 		// NOTE delete div#start-page and RegisterPage component to restore
@@ -67,8 +70,8 @@ function Login({ setProfile, setIsLogin }) {
 					<div id="login-btn">
 						<button
 							id="btn-login"
-							// onClick={login}
-							onClick={setProfile(true)}
+							onClick={login}
+							// onClick={setProfile(true)}
 						>
 							Log In
 						</button>

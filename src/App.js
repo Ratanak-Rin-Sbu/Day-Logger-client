@@ -1,27 +1,31 @@
 import { useState, useEffect } from 'react';
-import Login from './components/Login';
 import Home from './Home';
+import Login from './components/Login';
+import { getUserByIdAPIMethod } from './api/client';
 
 function App() {
 	const [profile, setProfile] = useState();
 	const [isLogin, setIsLogin] = useState(true);
 
-  // REVIEW source form previous assignment; review and change before use
-  // NOTE autoLogin function
-	// useEffect(() => {
-	// 	const autoLogin = async () => {
-	// 		try {
-	// 			const user = await getUserByIdAPIMethod();
-	// 			if (user) {
-	// 				setProfile(user);
-	// 			}
-	// 		} catch (e) {
-	// 			console.log('there is no such session or expired');
-	// 			return;
-	// 		}
-	// 	};
-	// 	autoLogin();
-	// }, []);
+	// REVIEW source form previous assignment; review and change before use
+	// NOTE autoLogin function
+
+	useEffect(() => {}, []);
+
+	useEffect(() => {
+		const autoLogin = async () => {
+			try {
+				const user = await getUserByIdAPIMethod();
+				if (user) {
+					setProfile(user);
+				}
+			} catch (e) {
+				console.log('there is no such session or expired');
+				return;
+			}
+		};
+		autoLogin();
+	}, []);
 
 	return (
 		<>

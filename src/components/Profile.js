@@ -1,12 +1,19 @@
-function Profile(setProfile, setIsLogin) {
-	// const handleLogout = () => {
-	// 	console.log('user logged out');
-	// 	// await logoutUserAPIMethod({
-	// 	// 	profile,
-	// 	// });
-	// 	setProfile(false);
-	// 	setIsLogin(true);
-	// };
+import {
+	logoutUserAPIMethod,
+	updateUserAPIMethod,
+	uploadImageToCloudinaryAPIMethod,
+} from '../api/client';
+
+function Profile(profile, setProfile, setIsLogin) {
+	const handleLogout = () => {
+		// const handleLogout = async () => {
+		// 	console.log('user logged out');
+		// 	await logoutUserAPIMethod({
+		// 		profile,
+		// 	});
+		setProfile(null);
+		setIsLogin(true);
+	};
 
 	return (
 		<form className="profile-form">
@@ -116,11 +123,7 @@ function Profile(setProfile, setIsLogin) {
 					// onClick={handleSaveClick}
 				/>
 				{/* <button className="button-save" onClick={handleSaveClick}>Save</button> */}
-				<button
-					className="button-logout"
-					type="button"
-					// onClick={handleLogout}
-				>
+				<button className="button-logout" onClick={handleLogout}>
 					Logout
 				</button>
 			</div>

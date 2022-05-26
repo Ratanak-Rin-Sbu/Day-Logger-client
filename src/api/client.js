@@ -70,3 +70,64 @@ export const deleteQuestionAPIMethod = (questionId) => {
 		.then(checkStatus)
 		.then(parseJSON);
 };
+
+// NOTE register a user
+export const registerUserAPIMethod = (user) => {
+	return fetch('/api/register', {
+		...defaultHeaders,
+		method: 'POST',
+		body: JSON.stringify(user),
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+};
+
+// NOTE login a user
+export const loginUserAPIMethod = (user) => {
+	return fetch('/api/login', {
+		...defaultHeaders,
+		method: 'POST',
+		body: JSON.stringify(user),
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+};
+
+// NOTE logout a user
+export const logoutUserAPIMethod = () => {
+	return fetch('/api/logout', {
+		...defaultHeaders,
+		method: 'POST',
+	}).then(checkStatus);
+};
+
+// ANCHOR get a user
+export const getUserByIdAPIMethod = () => {
+	return fetch(`/api/users/loggedInUser`, {
+		...defaultHeaders,
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+};
+
+// NOTE update a user
+export const updateUserAPIMethod = (user) => {
+	return fetch(`/api/users`, {
+		...defaultHeaders,
+		method: 'PUT',
+		body: JSON.stringify(user),
+	})
+		.then(checkStatus)
+		.then();
+};
+
+// NOTE upload an image to Cloudinary
+export const uploadImageToCloudinaryAPIMethod = (formData) => {
+	const cloudName = 'sjchae-cloud';
+	return fetch(`https://api.cloudinary.com/v1_1/${cloudName}/upload`, {
+		method: 'POST',
+		body: formData,
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+};

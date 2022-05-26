@@ -1,6 +1,6 @@
 // import React, { useState } from 'react';
 import { useState } from 'react';
-// import { registerUserAPIMethod } from '../api/client';
+import { registerUserAPIMethod } from '../api/client';
 
 function Register({ setUser, setIsLogin, show, onClose }) {
 	const [registerName, setRegisterName] = useState('');
@@ -36,27 +36,26 @@ function Register({ setUser, setIsLogin, show, onClose }) {
 		setRegisterPassword(registerPassword);
 	};
 
-	// const handleRegister = async () => {
-	// 	try {
-	// 		const newUser = await registerUserAPIMethod({
-	// 			name: registerName,
-	// 			email: registerEmail,
-	// 			password: registerPassword,
-	// 		});
-	// 		setUser(newUser);
-	// 	} catch (e) {
-	// 		console.log('signupfailed');
-	// 		console.error(e);
-	// 		document.getElementById('register-error-msg').style.display = 'block';
-	// 	}
-	// };
+	const handleRegister = async () => {
+		try {
+			const newUser = await registerUserAPIMethod({
+				name: registerName,
+				email: registerEmail,
+				password: registerPassword,
+			});
+			setUser(newUser);
+		} catch (e) {
+			console.log('registerfailed');
+			console.error(e);
+			document.getElementById('register-error-msg').style.display = 'block';
+		}
+	};
 
 	if (!show) {
 		return null;
 	}
 
 	return (
-		// NOTE delete div#register-modal to restore
 		<div id="register-modal" onClick={onClose}>
 			<div id="wrapper-register" onClick={(e) => e.stopPropagation()}>
 				<div id="register-header">
@@ -83,10 +82,7 @@ function Register({ setUser, setIsLogin, show, onClose }) {
 				</div>
 				<div id="register-error-msg">Error: Invalid email and/or password</div>
 				<div id="btn-register-container">
-					<button
-						id="btn-register"
-						// onClick={handleRegister}
-					>
+					<button id="btn-register" onClick={handleRegister}>
 						Sign Up
 					</button>
 				</div>
