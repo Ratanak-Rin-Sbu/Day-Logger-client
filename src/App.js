@@ -12,20 +12,20 @@ function App() {
 
 	useEffect(() => {}, []);
 
-	useEffect(() => {
-		const autoLogin = async () => {
-			try {
-				const user = await getUserByIdAPIMethod();
-				if (user) {
-					setProfile(user);
-				}
-			} catch (e) {
-				console.log('there is no such session or expired');
-				return;
-			}
-		};
-		autoLogin();
-	}, []);
+	// useEffect(() => {
+	// 	const autoLogin = async () => {
+	// 		try {
+	// 			const user = await getUserByIdAPIMethod();
+	// 			if (user) {
+	// 				setProfile(user);
+	// 			}
+	// 		} catch (e) {
+	// 			console.log('there is no such session or expired');
+	// 			return;
+	// 		}
+	// 	};
+	// 	autoLogin();
+	// }, []);
 
 	return (
 		<>

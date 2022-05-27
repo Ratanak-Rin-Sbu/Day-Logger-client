@@ -1,8 +1,7 @@
-// import React, { useState } from 'react';
 import { useState } from 'react';
 import { registerUserAPIMethod } from '../api/client';
 
-function Register({ setUser, setIsLogin, show, onClose }) {
+function Register({ setUser, show, onClose }) {
 	const [registerName, setRegisterName] = useState('');
 	const [registerEmail, setRegisterEmail] = useState('');
 	const [registerPassword, setRegisterPassword] = useState('');
@@ -11,12 +10,9 @@ function Register({ setUser, setIsLogin, show, onClose }) {
 	// NOTE 1 character before an @ symbol, followed by domain name
 	// NOTE minimum 8 characters in length
 
-	// const closeRegister = () => {
-	// 	setIsLogin(true);
-	// };
-
 	const onChangeName = (event) => {
 		// registerErrorMsg.style.display = 'none';
+		document.getElementById('register-error-msg').style.display = 'none';
 		console.log(event.target.value);
 		let registerName = event.target.value;
 		setRegisterName(registerName);
@@ -24,6 +20,7 @@ function Register({ setUser, setIsLogin, show, onClose }) {
 
 	const onChangeEmail = (event) => {
 		// registerErrorMsg.style.display = 'none';
+		document.getElementById('register-error-msg').style.display = 'none';
 		console.log(event.target.value);
 		let registerEmail = event.target.value;
 		setRegisterEmail(registerEmail);
@@ -31,6 +28,7 @@ function Register({ setUser, setIsLogin, show, onClose }) {
 
 	const onChangePassword = (event) => {
 		// registerErrorMsg.style.display = 'none';
+		document.getElementById('register-error-msg').style.display = 'none';
 		console.log(event.target.value);
 		let registerPassword = event.target.value;
 		setRegisterPassword(registerPassword);

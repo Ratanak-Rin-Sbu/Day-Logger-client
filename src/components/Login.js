@@ -6,22 +6,17 @@ import Register from './Register';
 function Login({ setProfile, setIsLogin }) {
 	const [loginEmail, setLoginEmail] = useState('');
 	const [loginPassword, setLoginPassword] = useState('');
-	const loginErrorMsg = document.getElementById('login-error-msg');
 	const [show, setShow] = useState(false);
 
 	const onChangeEmail = (event) => {
-		// loginErrorMsg.style.display = 'none';
+		console.log(event.target.value);
 		document.getElementById('login-error-msg').style.display = 'none';
 		let loginEmail = event.target.value;
-		console.log(
-			'🚀 ~ file: Login.js ~ line 16 ~ onChangeEmail ~ loginEmail',
-			loginEmail
-		);
 		setLoginEmail(loginEmail);
 	};
 
 	const onChangePassword = (event) => {
-		// loginErrorMsg.style.display = 'none';
+		console.log(event.target.value);
 		document.getElementById('login-error-msg').style.display = 'none';
 		let loginPassword = event.target.value;
 		setLoginPassword(loginPassword);
@@ -38,8 +33,8 @@ function Login({ setProfile, setIsLogin }) {
 			console.log('user: ', user);
 			setProfile(user);
 		} catch (e) {
-			console.log(e);
 			document.getElementById('login-error-msg').style.display = 'block';
+			console.log(e);
 		}
 	};
 

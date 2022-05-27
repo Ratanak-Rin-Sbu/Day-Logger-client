@@ -30,7 +30,7 @@ export const getQuestionsAPIMethod = () => {
 };
 // REVIEW Nak's ver.
 // const GetQuestions = () => {
-//   fetch('http://localhost:5000/api/questions')
+//   fetch('/api/questions')
 //     .then((res) => res.json())
 //     .then((data) => setQuestions(data)) // NOTE not done in via API
 //     .catch((err) => console.error('Error: ', err));
@@ -73,7 +73,7 @@ export const deleteQuestionAPIMethod = (questionId) => {
 
 // NOTE register a user
 export const registerUserAPIMethod = (user) => {
-	return fetch('/api/register', {
+	return fetch(`/api/register`, {
 		...defaultHeaders,
 		method: 'POST',
 		body: JSON.stringify(user),
@@ -81,6 +81,16 @@ export const registerUserAPIMethod = (user) => {
 		.then(checkStatus)
 		.then(parseJSON);
 };
+
+// export const registerUserAPIMethod = (user) => {
+// 	return fetch(`/api/register`, {
+// 		...defaultHeaders,
+// 		method: 'POST',
+// 		body: JSON.stringify(user),
+// 	})
+// 		.then(checkStatus)
+// 		.then(parseJSON);
+// };
 
 // NOTE login a user
 export const loginUserAPIMethod = (user) => {
@@ -101,7 +111,7 @@ export const logoutUserAPIMethod = () => {
 	}).then(checkStatus);
 };
 
-// ANCHOR get a user
+// NOTE get a user
 export const getUserByIdAPIMethod = () => {
 	return fetch(`/api/users/loggedInUser`, {
 		...defaultHeaders,

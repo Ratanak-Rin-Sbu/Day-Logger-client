@@ -15,7 +15,7 @@ function EditQuestions() {
 	}, []);
 
 	const GetQuestions = () => {
-		fetch('http://localhost:5000/api/questions')
+		fetch('/api/questions')
 			.then((res) => res.json())
 			.then((data) => setQuestions(data))
 			.catch((err) => console.error('Error: ', err));
@@ -129,7 +129,7 @@ function EditQuestions() {
 	};
 
 	const addQuestion = async () => {
-		const data = await fetch('http://localhost:5000/api/questions', {
+		const data = await fetch('/api/questions', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -163,7 +163,7 @@ function EditQuestions() {
 
 	const saveUpdatedQuestion = async (updates) => {
 		const data = await fetch(
-			'http://localhost:5000/api/questions/' + updates._id,
+			'/api/questions/' + updates._id,
 			{
 				method: 'PUT',
 				headers: {
@@ -181,7 +181,7 @@ function EditQuestions() {
 
 	const deleteQuestion = async (idToDelete) => {
 		const data = await fetch(
-			'http://localhost:5000/api/questions/' + idToDelete,
+			'/api/questions/' + idToDelete,
 			{
 				method: 'DELETE',
 			}
