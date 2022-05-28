@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { registerUserAPIMethod } from '../api/client';
 
-function Register({ setUser, show, onClose }) {
+function Register({ setProfile, show, onClose }) {
 	const [registerName, setRegisterName] = useState('');
 	const [registerEmail, setRegisterEmail] = useState('');
 	const [registerPassword, setRegisterPassword] = useState('');
@@ -41,7 +41,11 @@ function Register({ setUser, show, onClose }) {
 				email: registerEmail,
 				password: registerPassword,
 			});
-			setUser(newUser);
+			setProfile(newUser);
+			console.log(
+				'🚀 ~ file: Register.js ~ line 45 ~ handleRegister ~ newUser',
+				newUser
+			);
 		} catch (e) {
 			console.log('registerfailed');
 			console.error(e);

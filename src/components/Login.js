@@ -77,7 +77,11 @@ function Login({ setProfile, setIsLogin }) {
 					</div>
 				</div>
 			</div>
-			<Register show={show} onClose={() => setShow(false)} />
+			<Register
+				setProfile={setProfile}
+				show={show}
+				onClose={() => setShow(false)}
+			/>
 		</div>
 	);
 }
