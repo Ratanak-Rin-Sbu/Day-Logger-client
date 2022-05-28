@@ -23,15 +23,16 @@ function Login({ setProfile, setIsLogin }) {
 	};
 
 	const login = async () => {
-		setProfile(true);
-		setIsLogin(false);
+		// setProfile(true);
+		// setIsLogin(false);
 		try {
 			const user = await loginUserAPIMethod({
 				email: loginEmail,
 				password: loginPassword,
 			});
 			console.log('user: ', user);
-			setProfile(user);
+      setProfile(user);
+      console.log('LOGIN SUCCESSFULL!');
 		} catch (e) {
 			document.getElementById('login-error-msg').style.display = 'block';
 			console.log(e);

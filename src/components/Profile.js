@@ -5,12 +5,12 @@ import {
 } from '../api/client';
 
 function Profile(profile, setProfile, setIsLogin) {
-	const handleLogout = () => {
-		// const handleLogout = async () => {
-		// 	console.log('user logged out');
-		// 	await logoutUserAPIMethod({
-		// 		profile,
-		// 	});
+	const handleLogout = async () => {
+		console.log('user logged out');
+		await logoutUserAPIMethod({
+			profile,
+		});
+
 		setProfile(null);
 		setIsLogin(true);
 	};

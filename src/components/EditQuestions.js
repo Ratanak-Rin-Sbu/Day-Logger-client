@@ -8,10 +8,10 @@ function EditQuestions() {
 	const [questions, setQuestions] = useState([]);
 
 	useEffect(() => {
-		GetQuestions();
-		// getQuestionsAPIMethod().then((questions) => {
-		// 	setQuestions(questions);
-		// });
+		// GetQuestions();
+		getQuestionsAPIMethod().then((questions) => {
+			setQuestions(questions);
+		});
 	}, []);
 
 	const GetQuestions = () => {
@@ -162,30 +162,24 @@ function EditQuestions() {
 	// };
 
 	const saveUpdatedQuestion = async (updates) => {
-		const data = await fetch(
-			'/api/questions/' + updates._id,
-			{
-				method: 'PUT',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({
-					text: updates.text,
-					type: updates.type,
-					date: updates.date,
-					choices: updates.choices,
-				}),
-			}
-		).then((res) => res.json());
+		const data = await fetch('/api/questions/' + updates._id, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				text: updates.text,
+				type: updates.type,
+				date: updates.date,
+				choices: updates.choices,
+			}),
+		}).then((res) => res.json());
 	};
 
 	const deleteQuestion = async (idToDelete) => {
-		const data = await fetch(
-			'/api/questions/' + idToDelete,
-			{
-				method: 'DELETE',
-			}
-		).then((res) => res.json());
+		const data = await fetch('/api/questions/' + idToDelete, {
+			method: 'DELETE',
+		}).then((res) => res.json());
 		setQuestions(questions.filter((question) => question._id !== idToDelete));
 	};
 
