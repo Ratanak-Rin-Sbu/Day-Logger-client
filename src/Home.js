@@ -1,14 +1,54 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import LogDay from './components/LogDay';
 import EditQuestions from './components/EditQuestions';
 import ViewData from './components/ViewData';
 import Profile from './components/Profile';
+
+import { getQuestionsAPIMethod } from './api/client';
+
+import {createQuestionAPIMethod, updateQuestionsAPIMethod} from './api/client';
 
 function Home(profile, setProfile, setIsLogin) {
 	const [isLogDayPage, setIsLogDayPage] = useState(true);
 	const [isEditQuestionsPage, setIsEditQuestionsPage] = useState(false);
 	const [isViewDataPage, setIsViewDataPage] = useState(false);
 	const [isProfilePage, setIsProfilePage] = useState(false);
+	const [questions, setQuestions] = useState([]);
+
+	useEffect(() => {
+    getQuestionsAPIMethod().then((questions) => {
+        setQuestions(questions);
+    })
+  }, []);
+
+	const addQuestion = async () => {
+		const data = {
+			text: '',
+			type: 'number',
+			date: new Date().toLocaleString('en-US', {
+				year: 'numeric',
+				month: 'numeric',
+				day: 'numeric',
+			}),
+			choices: ['', '', ''],
+			responses: [],
+		}
+		createQuestionAPIMethod(data).then((response) => {
+			console.log("Question created");
+		})
+		setQuestions([data, ...questions]);
+		console.log(data._id);
+	};
+
+	const deleteQuestion = async (idToDelete) => {
+		const data = await fetch(
+			'http://localhost:5000/api/questions/' + idToDelete,
+			{
+				method: 'DELETE',
+			}
+		).then((res) => res.json());
+		setQuestions(questions.filter((question) => question._id !== idToDelete));
+	};
 
 	const openLogDay = () => {
 		setIsLogDayPage(true);
@@ -85,8 +125,8 @@ function Home(profile, setProfile, setIsLogin) {
 				</button>
 			</div>
 
-			{isLogDayPage && <LogDay />}
-			{isEditQuestionsPage && <EditQuestions />}
+			{isLogDayPage && <LogDay questions={questions} setQuestions={setQuestions} />}
+			{isEditQuestionsPage && <EditQuestions questions={questions} setQuestions={setQuestions} addQuestion={addQuestion} deleteQuestion={deleteQuestion} />}
 			{isViewDataPage && <ViewData />}
 			{isProfilePage && (
 				<Profile setProfile={setProfile} setIsLogin={setIsLogin} />

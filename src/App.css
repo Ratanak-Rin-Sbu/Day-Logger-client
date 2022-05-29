@@ -297,6 +297,7 @@ h2 {
 .date-wrapper {
 	display: flex;
 	justify-content: space-between;
+	margin-bottom: 40px;
 }
 
 .btn-prev-date {
@@ -326,6 +327,50 @@ h2 {
 	outline: inherit;
 	font-size: 26px;
 	font-weight: 900;
+}
+
+.question-text {
+	margin-bottom: 5px;
+}
+
+.number-type {
+	padding: 5px;
+	border-radius: 5px;
+}
+
+.number-type:active {
+	border-color: #27b3b3;
+}
+
+.boolean {
+	display: flex;
+}
+
+.boolean-type {
+	margin: auto 5px auto 5px;
+}
+
+.boolean-text {
+	margin-right: 40px;
+}
+
+.text-type {
+	padding: 5px;
+	border-radius: 5px;
+	width: 80%;
+}
+
+.multiple-choice-type {
+	margin: auto 8px auto 8px;
+}
+
+.mcq-text {
+	margin-bottom: 3px;
+}
+
+.choices {
+	display: flex;
+	margin-bottom: 5px;
 }
 
 /* NOTE Edit Questions section */

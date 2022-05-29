@@ -4,22 +4,25 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { deleteQuestionAPIMethod, getQuestionsAPIMethod } from '../api/client';
 
-function EditQuestions() {
-	const [questions, setQuestions] = useState([]);
+function EditQuestions({ questions, setQuestions, addQuestion, deleteQuestion }) {
+	// const [questions, setQuestions] = useState([]);
+
+	// useEffect(() => {
+	// 	GetQuestions();
+	// }, []);
+
+	// const GetQuestions = () => {
+	// 	fetch('http://localhost:5000/api/questions')
+	// 		.then((res) => res.json())
+	// 		.then((data) => setQuestions(data))
+	// 		.catch((err) => console.error('Error: ', err));
+	// };
 
 	useEffect(() => {
-		GetQuestions();
-		// getQuestionsAPIMethod().then((questions) => {
-		// 	setQuestions(questions);
-		// });
-	}, []);
-
-	const GetQuestions = () => {
-		fetch('http://localhost:5000/api/questions')
-			.then((res) => res.json())
-			.then((data) => setQuestions(data))
-			.catch((err) => console.error('Error: ', err));
-	};
+    getQuestionsAPIMethod().then((questions) => {
+        setQuestions(questions);
+    })
+  }, []);
 
 	const editText = (newText, id) => {
 		for (var i = 0; i < questions.length; i++) {
@@ -31,6 +34,7 @@ function EditQuestions() {
 					type: questions[i].type,
 					date: questions[i].date,
 					choices: questions[i].choices,
+					responses: questions[i].responses
 				};
 				saveUpdatedQuestion(data);
 			}
@@ -48,6 +52,7 @@ function EditQuestions() {
 					type: type,
 					date: questions[i].date,
 					choices: questions[i].choices,
+					responses: questions[i].responses
 				};
 				saveUpdatedQuestion(data);
 			}
@@ -65,28 +70,7 @@ function EditQuestions() {
 					type: questions[i].type,
 					date: questions[i].date,
 					choices: [option],
-				};
-				saveUpdatedQuestion(data);
-			}
-		}
-		setQuestions([...questions]);
-	};
-
-	const editChoices0_fix = (option, id) => {
-		// const editedQuestions = [...questions];
-		// const editedQuestion = {
-		//   ...questions[0],
-		//   option
-		// };
-		for (var i = 0; i < questions.length; i++) {
-			if (questions[i]._id === id) {
-				questions[i].choices[0] = option;
-				const data = {
-					// _id: id,
-					text: questions[i].text,
-					type: questions[i].type,
-					date: questions[i].date,
-					choices: [option],
+					responses: questions[i].responses
 				};
 				saveUpdatedQuestion(data);
 			}
@@ -104,6 +88,7 @@ function EditQuestions() {
 					type: questions[i].type,
 					date: questions[i].date,
 					choices: [...questions[i].choices, option],
+					responses: questions[i].responses
 				};
 				saveUpdatedQuestion(data);
 			}
@@ -121,32 +106,12 @@ function EditQuestions() {
 					type: questions[i].type,
 					date: questions[i].date,
 					choices: [...questions[i].choices, option],
+					responses: questions[i].responses
 				};
 				saveUpdatedQuestion(data);
 			}
 		}
 		setQuestions([...questions]);
-	};
-
-	const addQuestion = async () => {
-		const data = await fetch('http://localhost:5000/api/questions', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				text: '',
-				type: 'number',
-				date: new Date().toLocaleString('en-US', {
-					year: 'numeric',
-					month: 'numeric',
-					day: 'numeric',
-				}),
-				choices: ['', '', ''],
-			}),
-		}).then((res) => res.json());
-
-		setQuestions([data, ...questions]);
 	};
 
 	// const updateQuestion = (updatedQuestion) => {
@@ -174,25 +139,10 @@ function EditQuestions() {
 					type: updates.type,
 					date: updates.date,
 					choices: updates.choices,
+					responses: updates.responses
 				}),
 			}
 		).then((res) => res.json());
-	};
-
-	const deleteQuestion = async (idToDelete) => {
-		const data = await fetch(
-			'http://localhost:5000/api/questions/' + idToDelete,
-			{
-				method: 'DELETE',
-			}
-		).then((res) => res.json());
-		setQuestions(questions.filter((question) => question._id !== idToDelete));
-	};
-
-	const handleDeleteQeustion = async (questionIdToDelete) => {
-		await deleteQuestionAPIMethod(questionIdToDelete);
-		const fetchedQuestions = getQuestionsAPIMethod();
-		setQuestions(fetchedQuestions);
 	};
 
 	return (
@@ -283,7 +233,5 @@ function EditQuestions() {
 		</div>
 	);
 }
-// ${isMcq === true && "active"}
-// ${isMcq === true && "active"}
 
 export default EditQuestions;
