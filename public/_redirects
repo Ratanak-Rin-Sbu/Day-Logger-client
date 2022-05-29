@@ -1,2 +1,2 @@
-/api/ https://rnsj.herokuapp.com/api/
-/ /index.html
+/api/* https://rnsj.herokuapp.com/api/:splat 200
+/* /index.html 200
