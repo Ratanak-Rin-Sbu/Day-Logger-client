@@ -4,8 +4,9 @@ import {
 	uploadImageToCloudinaryAPIMethod,
 } from '../api/client';
 
-function Profile(profile, setProfile, setIsLogin) {
-	const handleLogout = async () => {
+function Profile({ profile, setProfile, setIsLogin }) {
+	const handleLogout = async (e) => {
+		e.preventDefault();
 		console.log('user logged out');
 		await logoutUserAPIMethod({
 			profile,

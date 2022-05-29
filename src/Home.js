@@ -11,7 +11,7 @@ import {
 	updateQuestionsAPIMethod,
 } from './api/client';
 
-function Home(profile, setProfile, setIsLogin) {
+function Home({ profile, setProfile, setIsLogin }) {
 	const [isLogDayPage, setIsLogDayPage] = useState(true);
 	const [isEditQuestionsPage, setIsEditQuestionsPage] = useState(false);
 	const [isViewDataPage, setIsViewDataPage] = useState(false);
