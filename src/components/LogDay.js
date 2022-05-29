@@ -18,7 +18,7 @@ function LogDay({ questions, setQuestions }) {
 	// debounce for number question
 	const updateNumber = (newNumber) => setNumberResponses(newNumber);
 	const debounceOnChangeNumber = (newNumber) =>
-		debounce(updateNumber(newNumber), 9000);
+		debounce(updateNumber(newNumber), 1000);
 
 	// debounce for text question
 	const updateText = (newText) => setTextResponses(newText);
