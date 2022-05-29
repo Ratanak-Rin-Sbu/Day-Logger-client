@@ -6,7 +6,10 @@ import Profile from './components/Profile';
 
 import { getQuestionsAPIMethod } from './api/client';
 
-import {createQuestionAPIMethod, updateQuestionsAPIMethod} from './api/client';
+import {
+	createQuestionAPIMethod,
+	updateQuestionsAPIMethod,
+} from './api/client';
 
 function Home(profile, setProfile, setIsLogin) {
 	const [isLogDayPage, setIsLogDayPage] = useState(true);
@@ -16,10 +19,10 @@ function Home(profile, setProfile, setIsLogin) {
 	const [questions, setQuestions] = useState([]);
 
 	useEffect(() => {
-    getQuestionsAPIMethod().then((questions) => {
-        setQuestions(questions);
-    })
-  }, []);
+		getQuestionsAPIMethod().then((questions) => {
+			setQuestions(questions);
+		});
+	}, []);
 
 	const addQuestion = async () => {
 		const data = {
@@ -32,21 +35,18 @@ function Home(profile, setProfile, setIsLogin) {
 			}),
 			choices: ['', '', ''],
 			responses: [],
-		}
+		};
 		createQuestionAPIMethod(data).then((response) => {
-			console.log("Question created");
-		})
+			console.log('Question created');
+		});
 		setQuestions([data, ...questions]);
 		console.log(data._id);
 	};
 
 	const deleteQuestion = async (idToDelete) => {
-		const data = await fetch(
-			'http://localhost:5000/api/questions/' + idToDelete,
-			{
-				method: 'DELETE',
-			}
-		).then((res) => res.json());
+		const data = await fetch('/api/questions/' + idToDelete, {
+			method: 'DELETE',
+		}).then((res) => res.json());
 		setQuestions(questions.filter((question) => question._id !== idToDelete));
 	};
 
@@ -125,8 +125,17 @@ function Home(profile, setProfile, setIsLogin) {
 				</button>
 			</div>
 
-			{isLogDayPage && <LogDay questions={questions} setQuestions={setQuestions} />}
-			{isEditQuestionsPage && <EditQuestions questions={questions} setQuestions={setQuestions} addQuestion={addQuestion} deleteQuestion={deleteQuestion} />}
+			{isLogDayPage && (
+				<LogDay questions={questions} setQuestions={setQuestions} />
+			)}
+			{isEditQuestionsPage && (
+				<EditQuestions
+					questions={questions}
+					setQuestions={setQuestions}
+					addQuestion={addQuestion}
+					deleteQuestion={deleteQuestion}
+				/>
+			)}
 			{isViewDataPage && <ViewData />}
 			{isProfilePage && (
 				<Profile

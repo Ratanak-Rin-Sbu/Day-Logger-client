@@ -4,7 +4,12 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { deleteQuestionAPIMethod, getQuestionsAPIMethod } from '../api/client';
 
-function EditQuestions({ questions, setQuestions, addQuestion, deleteQuestion }) {
+function EditQuestions({
+	questions,
+	setQuestions,
+	addQuestion,
+	deleteQuestion,
+}) {
 	// const [questions, setQuestions] = useState([]);
 
 	// useEffect(() => {
@@ -12,17 +17,17 @@ function EditQuestions({ questions, setQuestions, addQuestion, deleteQuestion })
 	// }, []);
 
 	// const GetQuestions = () => {
-	// 	fetch('http://localhost:5000/api/questions')
+	// 	fetch('/api/questions')
 	// 		.then((res) => res.json())
 	// 		.then((data) => setQuestions(data))
 	// 		.catch((err) => console.error('Error: ', err));
 	// };
 
 	useEffect(() => {
-    getQuestionsAPIMethod().then((questions) => {
-        setQuestions(questions);
-    })
-  }, []);
+		getQuestionsAPIMethod().then((questions) => {
+			setQuestions(questions);
+		});
+	}, []);
 
 	const editText = (newText, id) => {
 		for (var i = 0; i < questions.length; i++) {
@@ -34,7 +39,7 @@ function EditQuestions({ questions, setQuestions, addQuestion, deleteQuestion })
 					type: questions[i].type,
 					date: questions[i].date,
 					choices: questions[i].choices,
-					responses: questions[i].responses
+					responses: questions[i].responses,
 				};
 				saveUpdatedQuestion(data);
 			}
@@ -52,7 +57,7 @@ function EditQuestions({ questions, setQuestions, addQuestion, deleteQuestion })
 					type: type,
 					date: questions[i].date,
 					choices: questions[i].choices,
-					responses: questions[i].responses
+					responses: questions[i].responses,
 				};
 				saveUpdatedQuestion(data);
 			}
@@ -70,7 +75,7 @@ function EditQuestions({ questions, setQuestions, addQuestion, deleteQuestion })
 					type: questions[i].type,
 					date: questions[i].date,
 					choices: [option],
-					responses: questions[i].responses
+					responses: questions[i].responses,
 				};
 				saveUpdatedQuestion(data);
 			}
@@ -88,7 +93,7 @@ function EditQuestions({ questions, setQuestions, addQuestion, deleteQuestion })
 					type: questions[i].type,
 					date: questions[i].date,
 					choices: [...questions[i].choices, option],
-					responses: questions[i].responses
+					responses: questions[i].responses,
 				};
 				saveUpdatedQuestion(data);
 			}
@@ -106,7 +111,7 @@ function EditQuestions({ questions, setQuestions, addQuestion, deleteQuestion })
 					type: questions[i].type,
 					date: questions[i].date,
 					choices: [...questions[i].choices, option],
-					responses: questions[i].responses
+					responses: questions[i].responses,
 				};
 				saveUpdatedQuestion(data);
 			}
@@ -115,22 +120,19 @@ function EditQuestions({ questions, setQuestions, addQuestion, deleteQuestion })
 	};
 
 	const saveUpdatedQuestion = async (updates) => {
-		const data = await fetch(
-			'http://localhost:5000/api/questions/' + updates._id,
-			{
-				method: 'PUT',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({
-					text: updates.text,
-					type: updates.type,
-					date: updates.date,
-					choices: updates.choices,
-					responses: updates.responses
-				}),
-			}
-		).then((res) => res.json());
+		const data = await fetch('/api/questions/' + updates._id, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				text: updates.text,
+				type: updates.type,
+				date: updates.date,
+				choices: updates.choices,
+				responses: updates.responses,
+			}),
+		}).then((res) => res.json());
 	};
 
 	return (
