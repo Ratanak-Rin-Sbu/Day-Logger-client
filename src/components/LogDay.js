@@ -24,7 +24,7 @@ function LogDay({ questions, setQuestions }) {
 	const setDate = (newDate) => {
 		const date = newDate || new Date();
 		setSelectedDate(
-			date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate()
+			date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear()
 		);
 	};
 
