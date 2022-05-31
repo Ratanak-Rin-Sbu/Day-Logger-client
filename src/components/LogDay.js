@@ -18,11 +18,11 @@ function LogDay({ questions, setQuestions }) {
 	// debounce for number question
 	const updateNumber = (newNumber) => setNumberResponses(newNumber);
 	const debounceOnChangeNumber = (newNumber) =>
-		debounce(updateNumber(newNumber), 1000);
+		debounce(updateNumber(newNumber), 5000);
 
 	// debounce for text question
 	const updateText = (newText) => setTextResponses(newText);
-	const debounceOnChangeText = (newText) => debounce(updateText(newText), 9000);
+	const debounceOnChangeText = (newText) => debounce(updateText(newText), 5000);
 
 	const saveResponses = async () => {
 		for (var i = 0; i < questions.length; i++) {
