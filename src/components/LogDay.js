@@ -8,12 +8,43 @@ function LogDay({ questions, setQuestions }) {
 	const [booleanResponses, setBooleanResponses] = useState('');
 	const [textResponses, setTextResponses] = useState('');
 	const [mcqResponses, setMcqResponses] = useState('');
+	const [selectedDate, setSelectedDate] = useState(null);
+	// var today = new Date();
+	// let year = today.getFullYear();
+	// let month = today.getMonth() + 1;
+	// let date = today.getDate();
 
 	useEffect(() => {
 		getQuestionsAPIMethod().then((questions) => {
 			setQuestions(questions);
 		});
+		setDate();
 	}, []);
+
+	const setDate = (newDate) => {
+		const date = newDate || new Date();
+		setSelectedDate(
+			date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate()
+		);
+	};
+
+	const getPrevDate = () => {
+		const currentDayInMilli = new Date(selectedDate).getTime();
+		const oneDay = 1000 * 60 * 60 * 24;
+		const previousDayInMilli = currentDayInMilli - oneDay;
+		const previousDate = new Date(previousDayInMilli);
+
+		setDate(previousDate);
+	};
+
+	const getNextDate = () => {
+		const currentDayInMilli = new Date(selectedDate).getTime();
+		const oneDay = 1000 * 60 * 60 * 24;
+		const nextDayInMilli = currentDayInMilli + oneDay;
+		const nextDate = new Date(nextDayInMilli);
+
+		setDate(nextDate);
+	};
 
 	// debounce for number question
 	const updateNumber = (newNumber) => setNumberResponses(newNumber);
@@ -103,9 +134,13 @@ function LogDay({ questions, setQuestions }) {
 		return (
 			<div className="logday-wrapper">
 				<div className="date-wrapper">
-					<button className="btn-prev-date">{'<'}</button>
+					<button className="btn-prev-date" onClick={getPrevDate}>
+						{'<'}
+					</button>
 					<div className="displaying-date">{}</div>
-					<button className="btn-next-date">{'>'}</button>
+					<button className="btn-next-date" onClick={getNextDate}>
+						{'>'}
+					</button>
 				</div>
 			</div>
 		);
@@ -113,9 +148,15 @@ function LogDay({ questions, setQuestions }) {
 		return (
 			<div className="logday-wrapper">
 				<div className="date-wrapper">
-					<button className="btn-prev-date">{'<'}</button>
-					<div className="displaying-date">{questions[0].date}</div>
-					<button className="btn-next-date">{'>'}</button>
+					<button className="btn-prev-date" onClick={getPrevDate}>
+						{'<'}
+					</button>
+					{/* <div className="displaying-date">{questions[0].date}</div> */}
+					{/* TODO we should display the today's date and then according to the date shown, we should show the corresponding responses :) */}
+					<div className="displaying-date">{selectedDate}</div>
+					<button className="btn-next-date" onClick={getNextDate}>
+						{'>'}
+					</button>
 				</div>
 
 				<div className="questions-list">
