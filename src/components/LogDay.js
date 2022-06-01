@@ -4,15 +4,24 @@ import { useState, useEffect } from 'react';
 import { getQuestionsAPIMethod } from '../api/client';
 
 function LogDay({ questions, setQuestions }) {
-	const [numberResponses, setNumberResponses] = useState('');
-	const [booleanResponses, setBooleanResponses] = useState('');
-	const [textResponses, setTextResponses] = useState('');
-	const [mcqResponses, setMcqResponses] = useState('');
 	const [selectedDate, setSelectedDate] = useState(null);
 	// var today = new Date();
 	// let year = today.getFullYear();
 	// let month = today.getMonth() + 1;
 	// let date = today.getDate();
+
+	const [numberResponses, setNumberResponses] = useState([]);
+	let numberCounter = 0;  // for debouncing
+	let numberCounter2 = 0; // for saving responses
+	const [booleanResponses, setBooleanResponses] = useState([]);
+	let booleanCounter = 0;
+	let booleanCounter2 = 0;
+	const [textResponses, setTextResponses] = useState([]);
+	let textCounter = 0;
+	let textCounter2 = 0;
+	const [mcqResponses, setMcqResponses] = useState([]);
+	let mcqCounter = 0;  // for debouncing
+	let mcqCounter2 = 0; // for saving responses
 
 	useEffect(() => {
 		getQuestionsAPIMethod().then((questions) => {
@@ -46,20 +55,96 @@ function LogDay({ questions, setQuestions }) {
 		setDate(nextDate);
 	};
 
+	const findFirstNumber = () => {
+		for (let i=0; i<questions.length; i++) {
+			if (questions[i].type === 'number') {
+				return questions[i]._id;
+			}
+		}
+	}
+
+	const findFirstBoolean = () => {
+		for (let i=0; i<questions.length; i++) {
+			if (questions[i].type === 'boolean') {
+				return questions[i]._id;
+			}
+		}
+	}
+
+	const findFirstText = () => {
+		for (let i=0; i<questions.length; i++) {
+			if (questions[i].type === 'text') {
+				return questions[i]._id;
+			}
+		}
+	}
+
+	const findFirstMcq = () => {
+		for (let i=0; i<questions.length; i++) {
+			if (questions[i].type === 'multiple-choice') {
+				return questions[i]._id;
+			}
+		}
+	}
+
+	let numberID = findFirstNumber();
+	let textID = findFirstText();
+	let booleanID = findFirstBoolean();
+	let mcqID = findFirstMcq();
+
 	// debounce for number question
-	const updateNumber = (newNumber) => setNumberResponses(newNumber);
-	const debounceOnChangeNumber = (newNumber) =>
-		debounce(updateNumber(newNumber), 5000);
+	const updateNumber = (newNumber, id) => {
+		if (id === numberID) {
+			numberResponses[numberCounter] = newNumber;
+		} else {
+			numberID = id;
+			numberCounter++;
+			numberResponses[numberCounter] = newNumber;
+		}
+	}
+	const debounceOnChangeNumber = (newNumber, id) => {
+		debounce(updateNumber(newNumber, id), 5000);
+	}
 
 	// debounce for text question
-	const updateText = (newText) => setTextResponses(newText);
-	const debounceOnChangeText = (newText) => debounce(updateText(newText), 5000);
+	const updateText = (newText, id) => {
+		if (id === textID) {
+			textResponses[textCounter] = newText;
+		} else {
+			textID = id;
+			textCounter++;
+			textResponses[textCounter] = newText;
+		}
+	}
+	const debounceOnChangeText = (newText, id) => {
+		debounce(updateText(newText, id), 5000);
+	}
+
+	// handle boolean (including multiple questions)
+	const onChangeBoolean = (newBoolean, id) => {
+		if (id === booleanID) {
+			booleanResponses[booleanCounter] = newBoolean;
+		} else {
+			booleanID = id;
+			booleanCounter++;
+			booleanResponses[booleanCounter] = newBoolean;
+		}
+	}
+
+	// handle mcq (including multiple questions)
+	const onChangeMcq = (newMcq, id) => {
+		if (id === mcqID) {
+			mcqResponses[mcqCounter] = newMcq;
+		} else {
+			mcqID = id;
+			mcqCounter++;
+			mcqResponses[mcqCounter] = newMcq;
+		}
+	}
 
 	const saveResponses = async () => {
 		for (var i = 0; i < questions.length; i++) {
-			console.log(questions[i].type);
 			if (questions[i].type === 'number') {
-				console.log(numberResponses);
 				const data = await fetch('/api/questions/' + questions[i]._id, {
 					method: 'PUT',
 					headers: {
@@ -70,7 +155,7 @@ function LogDay({ questions, setQuestions }) {
 						type: questions[i].type,
 						date: questions[i].date,
 						choices: questions[i].choices,
-						responses: numberResponses,
+						responses: numberResponses[numberCounter2++],
 					}),
 				})
 					.then((res) => res.json())
@@ -87,7 +172,7 @@ function LogDay({ questions, setQuestions }) {
 						type: questions[i].type,
 						date: questions[i].date,
 						choices: questions[i].choices,
-						responses: booleanResponses,
+						responses: booleanResponses[booleanCounter2++],
 					}),
 				})
 					.then((res) => res.json())
@@ -104,7 +189,7 @@ function LogDay({ questions, setQuestions }) {
 						type: questions[i].type,
 						date: questions[i].date,
 						choices: questions[i].choices,
-						responses: textResponses,
+						responses: textResponses[textCounter2++],
 					}),
 				})
 					.then((res) => res.json())
@@ -121,7 +206,7 @@ function LogDay({ questions, setQuestions }) {
 						type: questions[i].type,
 						date: questions[i].date,
 						choices: questions[i].choices,
-						responses: mcqResponses,
+						responses: mcqResponses[mcqCounter2++],
 					}),
 				})
 					.then((res) => res.json())
@@ -166,7 +251,7 @@ function LogDay({ questions, setQuestions }) {
 							{question.type === 'number' ? (
 								<input
 									className="number-type"
-									onChange={(e) => debounceOnChangeNumber(e.target.value)}
+									onChange={(e) => debounceOnChangeNumber(e.target.value, question._id)}
 								></input>
 							) : question.type === 'boolean' ? (
 								<div className="boolean">
@@ -175,7 +260,7 @@ function LogDay({ questions, setQuestions }) {
 										type="radio"
 										name={question._id}
 										value="True"
-										onChange={(e) => setBooleanResponses(e.target.value)}
+										onChange={(e) => onChangeBoolean(e.target.value, question._id)}
 									></input>
 									<div className="boolean-text">True</div>
 									<input
@@ -183,14 +268,14 @@ function LogDay({ questions, setQuestions }) {
 										type="radio"
 										name={question._id}
 										value="False"
-										onChange={(e) => setBooleanResponses(e.target.value)}
+										onChange={(e) => onChangeBoolean(e.target.value, question._id)}
 									></input>
 									<div className="boolean-text">False</div>
 								</div>
 							) : question.type === 'text' ? (
 								<input
 									className="text-type"
-									onChange={(e) => debounceOnChangeText(e.target.value)}
+									onChange={(e) => debounceOnChangeText(e.target.value, question._id)}
 								></input>
 							) : question.type === 'multiple-choice' ? (
 								<div className="multiple-choice">
@@ -200,7 +285,7 @@ function LogDay({ questions, setQuestions }) {
 											type="radio"
 											name={question._id}
 											value={question.choices[0]}
-											onChange={(e) => setMcqResponses(e.target.value)}
+											onChange={(e) => onChangeMcq(e.target.value, question._id)}
 										></input>
 										<div className="mcq-text">{question.choices[0]}</div>
 									</div>
@@ -210,7 +295,7 @@ function LogDay({ questions, setQuestions }) {
 											type="radio"
 											name={question._id}
 											value={question.choices[1]}
-											onChange={(e) => setMcqResponses(e.target.value)}
+											onChange={(e) => onChangeMcq(e.target.value, question._id)}
 										></input>
 										<div className="mcq-text">{question.choices[1]}</div>
 									</div>
@@ -220,7 +305,7 @@ function LogDay({ questions, setQuestions }) {
 											type="radio"
 											name={question._id}
 											value={question.choices[2]}
-											onChange={(e) => setMcqResponses(e.target.value)}
+											onChange={(e) => onChangeMcq(e.target.value, question._id)}
 										></input>
 										<div className="mcq-text">{question.choices[2]}</div>
 									</div>
