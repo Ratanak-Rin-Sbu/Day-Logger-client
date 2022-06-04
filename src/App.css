@@ -41,6 +41,7 @@ input[type='submit']:hover,
 input[type='button']:hover,
 button:hover {
 	transform: scale(1.1);
+	cursor: pointer;
 }
 
 /* NOTE login section */
@@ -272,12 +273,15 @@ h2 {
 	text-decoration: underline;
 }
 
+/* REVIEW border-radius does not seem to work here so I just made the bg transparent */
 #button-profile {
 	display: inline-flex;
 	align-items: center;
 	height: 100%;
 	margin: 0 20px;
 	border: none;
+	border-radius: 50%;
+	background-color: transparent;
 	outline: none;
 	cursor: pointer;
 	pointer-events: all;
@@ -469,6 +473,12 @@ h2 {
 .profile-image .profile-picture-header {
 	display: flex;
 	justify-content: space-between;
+}
+
+#btn-choose-image {
+	border: none;
+	background-color: transparent;
+	border-radius: 50%;
 }
 
 .input-image {

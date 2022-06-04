@@ -4,11 +4,10 @@ import EditQuestions from './components/EditQuestions';
 import ViewData from './components/ViewData';
 import Profile from './components/Profile';
 
-import { getQuestionsAPIMethod } from './api/client';
-
 import {
 	createQuestionAPIMethod,
-	updateQuestionsAPIMethod,
+	getQuestionsAPIMethod,
+	updateUserAPIMethod,
 } from './api/client';
 
 function Home({ profile, setProfile, setIsLogin }) {
@@ -48,6 +47,44 @@ function Home({ profile, setProfile, setIsLogin }) {
 			method: 'DELETE',
 		}).then((res) => res.json());
 		setQuestions(questions.filter((question) => question._id !== idToDelete));
+	};
+
+	const handleProfileName = (text) => {
+		const newProfile = {
+			...profile,
+			name: text,
+		};
+		setProfile(newProfile);
+	};
+
+	const handleProfileEmail = (text) => {
+		const newProfile = {
+			...profile,
+			email: text,
+		};
+		setProfile(newProfile);
+	};
+	const handleProfileAddress1 = (text) => {
+		const newProfile = {
+			...profile,
+			address1: text,
+		};
+		setProfile(newProfile);
+	};
+	const handleProfileAddress2 = (text) => {
+		const newProfile = {
+			...profile,
+			address2: text,
+		};
+		setProfile(newProfile);
+	};
+
+	const handleSaveClick = async (e) => {
+		e.preventDefault();
+		console.log(profile);
+
+		await updateUserAPIMethod(profile);
+		// closeProfileModal();
 	};
 
 	const openLogDay = () => {
@@ -118,7 +155,7 @@ function Home({ profile, setProfile, setIsLogin }) {
 						className="image-profile"
 						alt="user-profile-pic"
 						src={
-							// profile?.profileImageUrl ||
+							profile?.profileImageUrl ||
 							`${process.env.PUBLIC_URL}/assets/images/cat1.jpg`
 						}
 					/>
@@ -142,6 +179,11 @@ function Home({ profile, setProfile, setIsLogin }) {
 					profile={profile}
 					setProfile={setProfile}
 					setIsLogin={setIsLogin}
+					handleProfileName={handleProfileName}
+					handleProfileEmail={handleProfileEmail}
+					handleProfileAddress1={handleProfileAddress1}
+					handleProfileAddress2={handleProfileAddress2}
+					handleSaveClick={handleSaveClick}
 				/>
 			)}
 		</>
