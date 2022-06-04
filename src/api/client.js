@@ -1,50 +1,54 @@
 const defaultHeaders = {
-  headers: {
-      'Content-Type': 'application/json; charset=UTF-8'
-  },
-}
+	headers: {
+		'Content-Type': 'application/json; charset=UTF-8',
+	},
+};
 
 export const createQuestionAPIMethod = (question) => {
-  return fetch(`api/questions`, {
-      ...defaultHeaders,
-      method: 'POST', // The method defaults to GET
-      body: JSON.stringify(question),
-  }).then(checkStatus)
-      .then(parseJSON);
-}
+	return fetch(`api/questions`, {
+		...defaultHeaders,
+		method: 'POST', // The method defaults to GET
+		body: JSON.stringify(question),
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+};
 
 export const getQuestionsAPIMethod = () => {
-  return fetch(`api/questions`, {
-      ...defaultHeaders,
-  }).then(checkStatus)
-      .then(parseJSON);
-}
+	return fetch(`api/questions`, {
+		...defaultHeaders,
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+};
 
 export const updateQuestionsAPIMethod = (questionId) => {
-  return fetch(`api/questions/${questionId}`, {
-      ...defaultHeaders,
-      method: 'PUT',
-  }).then(checkStatus)
-      .then(parseJSON);
-}
+	return fetch(`api/questions/${questionId}`, {
+		...defaultHeaders,
+		method: 'PUT',
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+};
 
 export const deleteQuestionByIdAPIMethod = (questionId) => {
-  return fetch(`api/questions/${questionId}`, {
-      ...defaultHeaders,
-      method: 'DELETE',
-  }).then(checkStatus)
-      .then(parseJSON);
-}
+	return fetch(`api/questions/${questionId}`, {
+		...defaultHeaders,
+		method: 'DELETE',
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+};
 
 function checkStatus(response) {
-  if (response.status >= 200 && response.status < 300) {
-      return response;
-  } else {
-      const error = new Error(`${response.statusText}`);
-      error.status = response.statusText;
-      error.response = response;
-      throw error;
-  }
+	if (response.status >= 200 && response.status < 300) {
+		return response;
+	} else {
+		const error = new Error(`${response.statusText}`);
+		error.status = response.statusText;
+		error.response = response;
+		throw error;
+	}
 }
 
 // NOTE delete a question
@@ -68,16 +72,6 @@ export const registerUserAPIMethod = (user) => {
 		.then(parseJSON);
 };
 
-// export const registerUserAPIMethod = (user) => {
-// 	return fetch(`/api/register`, {
-// 		...defaultHeaders,
-// 		method: 'POST',
-// 		body: JSON.stringify(user),
-// 	})
-// 		.then(checkStatus)
-// 		.then(parseJSON);
-// };
-
 // NOTE login a user
 export const loginUserAPIMethod = (user) => {
 	return fetch('/api/login', {
@@ -95,6 +89,15 @@ export const logoutUserAPIMethod = () => {
 		...defaultHeaders,
 		method: 'POST',
 	}).then(checkStatus);
+};
+
+// NOTE get all users
+export const getUsersAPIMethod = () => {
+	return fetch(`api/users`, {
+		...defaultHeaders,
+	})
+		.then(checkStatus)
+		.then(parseJSON);
 };
 
 // NOTE get a user
@@ -129,5 +132,5 @@ export const uploadImageToCloudinaryAPIMethod = (formData) => {
 };
 
 function parseJSON(response) {
-  return response.json();
+	return response.json();
 }

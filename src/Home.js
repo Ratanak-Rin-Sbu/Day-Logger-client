@@ -9,12 +9,14 @@ import {
 	getQuestionsAPIMethod,
 	updateUserAPIMethod,
 } from './api/client';
+import Admin from './components/Admin';
 
 function Home({ profile, setProfile, setIsLogin }) {
 	const [isLogDayPage, setIsLogDayPage] = useState(true);
 	const [isEditQuestionsPage, setIsEditQuestionsPage] = useState(false);
 	const [isViewDataPage, setIsViewDataPage] = useState(false);
 	const [isProfilePage, setIsProfilePage] = useState(false);
+	const [isAdminPage, setIsAdminPage] = useState(false);
 	const [questions, setQuestions] = useState([]);
 
 	useEffect(() => {
@@ -64,6 +66,7 @@ function Home({ profile, setProfile, setIsLogin }) {
 		};
 		setProfile(newProfile);
 	};
+
 	const handleProfileAddress1 = (text) => {
 		const newProfile = {
 			...profile,
@@ -71,6 +74,7 @@ function Home({ profile, setProfile, setIsLogin }) {
 		};
 		setProfile(newProfile);
 	};
+
 	const handleProfileAddress2 = (text) => {
 		const newProfile = {
 			...profile,
@@ -92,6 +96,7 @@ function Home({ profile, setProfile, setIsLogin }) {
 		setIsEditQuestionsPage(false);
 		setIsViewDataPage(false);
 		setIsProfilePage(false);
+		setIsAdminPage(false);
 	};
 
 	const openEditQuestions = () => {
@@ -99,6 +104,7 @@ function Home({ profile, setProfile, setIsLogin }) {
 		setIsEditQuestionsPage(true);
 		setIsViewDataPage(false);
 		setIsProfilePage(false);
+		setIsAdminPage(false);
 	};
 
 	const openViewData = () => {
@@ -106,6 +112,7 @@ function Home({ profile, setProfile, setIsLogin }) {
 		setIsEditQuestionsPage(false);
 		setIsViewDataPage(true);
 		setIsProfilePage(false);
+		setIsAdminPage(false);
 	};
 
 	const openProfile = () => {
@@ -113,6 +120,15 @@ function Home({ profile, setProfile, setIsLogin }) {
 		setIsEditQuestionsPage(false);
 		setIsViewDataPage(false);
 		setIsProfilePage(true);
+		setIsAdminPage(false);
+	};
+
+	const openAdmin = () => {
+		setIsLogDayPage(false);
+		setIsEditQuestionsPage(false);
+		setIsViewDataPage(false);
+		setIsProfilePage(false);
+		setIsAdminPage(true);
 	};
 
 	return (
@@ -142,6 +158,13 @@ function Home({ profile, setProfile, setIsLogin }) {
 						onClick={openViewData}
 					>
 						View Data
+					</label>
+					<label
+						className={`btn-home ${isAdminPage ? 'active' : ''}`}
+						id="btn-open-edit-questions"
+						onClick={openAdmin}
+					>
+						Admin Page
 					</label>
 				</div>
 				<button
@@ -174,6 +197,7 @@ function Home({ profile, setProfile, setIsLogin }) {
 				/>
 			)}
 			{isViewDataPage && <ViewData />}
+			{isAdminPage && <Admin />}
 			{isProfilePage && (
 				<Profile
 					profile={profile}

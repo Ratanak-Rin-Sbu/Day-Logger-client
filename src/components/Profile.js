@@ -170,7 +170,7 @@ function Profile({
 				<input
 					className="input-name"
 					type="text"
-					placeholder="Seungjun Chae"
+					placeholder="Enter name here..."
 					defaultValue={profile.name}
 					onChange={(e) => {
 						handleProfileName(e.target.value);
@@ -185,7 +185,7 @@ function Profile({
 				<input
 					className="input-email"
 					type="text"
-					placeholder="seungjun.chae@stonybrook.edu"
+					placeholder="Enter email here..."
 					defaultValue={profile.email}
 					onChange={(e) => {
 						handleProfileEmail(e.target.value);
@@ -201,8 +201,8 @@ function Profile({
 					className="input-address"
 					id="input-address2"
 					type="text"
-					placeholder="119 songdo moonwha-ro"
-					defaultValue={profile.name}
+					placeholder="Enter address1 here..."
+					defaultValue={profile.address1}
 					onChange={(e) => {
 						handleProfileAddress1(e.target.value);
 					}}
@@ -211,8 +211,8 @@ function Profile({
 					className="input-address"
 					id="input-address2"
 					type="text"
-					placeholder="Incheon, Yeonsu-gu, Korea"
-					defaultValue={profile.name}
+					placeholder="Enter address2 here..."
+					defaultValue={profile.address2}
 					onChange={(e) => {
 						handleProfileAddress2(e.target.value);
 					}}
