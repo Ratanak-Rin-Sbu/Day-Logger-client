@@ -2,14 +2,13 @@ import { useState, useEffect } from 'react';
 import LogDay from './components/LogDay';
 import EditQuestions from './components/EditQuestions';
 import ViewData from './components/ViewData';
+import Admin from './components/Admin';
 import Profile from './components/Profile';
-
 import {
 	createQuestionAPIMethod,
 	getQuestionsAPIMethod,
 	updateUserAPIMethod,
 } from './api/client';
-import Admin from './components/Admin';
 
 function Home({ profile, setProfile, setIsLogin }) {
 	const [isLogDayPage, setIsLogDayPage] = useState(true);
@@ -164,7 +163,7 @@ function Home({ profile, setProfile, setIsLogin }) {
 						id="btn-open-edit-questions"
 						onClick={openAdmin}
 					>
-						Admin Page
+						Admin
 					</label>
 				</div>
 				<button
@@ -197,7 +196,7 @@ function Home({ profile, setProfile, setIsLogin }) {
 				/>
 			)}
 			{isViewDataPage && <ViewData />}
-			{isAdminPage && <Admin />}
+			{isAdminPage && <Admin profile={profile} setProfile={setProfile} />}
 			{isProfilePage && (
 				<Profile
 					profile={profile}

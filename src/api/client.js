@@ -93,7 +93,7 @@ export const logoutUserAPIMethod = () => {
 
 // NOTE get all users
 export const getUsersAPIMethod = () => {
-	return fetch(`api/users`, {
+	return fetch(`/api/users`, {
 		...defaultHeaders,
 	})
 		.then(checkStatus)
