@@ -34,7 +34,6 @@ function Home({ profile, setProfile, setIsLogin }) {
 				day: 'numeric',
 			}),
 			choices: ['', '', ''],
-			responses: '',
 		};
 		createQuestionAPIMethod(data).then((response) => {
 			console.log('Question created');

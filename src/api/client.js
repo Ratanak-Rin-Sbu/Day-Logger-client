@@ -36,6 +36,38 @@ export const deleteQuestionByIdAPIMethod = (questionId) => {
       .then(parseJSON);
 }
 
+export const createNumberResponseAPIMethod = (response) => {
+  return fetch(`api/number/responses`, {
+      ...defaultHeaders,
+      method: 'POST', // The method defaults to GET
+      body: JSON.stringify(response),
+  }).then(checkStatus)
+      .then(parseJSON);
+}
+
+export const createTextResponseAPIMethod = (response) => {
+  return fetch(`api/text/responses`, {
+      ...defaultHeaders,
+      method: 'POST', // The method defaults to GET
+      body: JSON.stringify(response),
+  }).then(checkStatus)
+      .then(parseJSON);
+}
+
+export const getNumberResponsesAPIMethod = () => {
+  return fetch(`api/number/responses`, {
+      ...defaultHeaders,
+  }).then(checkStatus)
+      .then(parseJSON);
+}
+
+export const getTextResponsesAPIMethod = () => {
+  return fetch(`api/text/responses`, {
+      ...defaultHeaders,
+  }).then(checkStatus)
+      .then(parseJSON);
+}
+
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
       return response;
