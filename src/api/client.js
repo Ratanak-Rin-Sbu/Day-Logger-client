@@ -124,6 +124,47 @@ export const getMcqResponsesAPIMethod = () => {
 		.then(parseJSON);
 };
 
+// for admin
+export const getQuestionsAdminAPIMethod = () => {
+	return fetch(`api/questions/admin`, {
+		...defaultHeaders,
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+};
+
+export const getNumberResponsesAdminAPIMethod = () => {
+	return fetch(`api/number/responses/admin`, {
+		...defaultHeaders,
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+};
+
+export const getBooleanResponsesAdminAPIMethod = () => {
+	return fetch(`api/boolean/responses/admin`, {
+		...defaultHeaders,
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+};
+
+export const getTextResponsesAdminAPIMethod = () => {
+	return fetch(`api/text/responses/admin`, {
+		...defaultHeaders,
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+};
+
+export const getMcqResponsesAdminAPIMethod = () => {
+	return fetch(`api/mcq/responses/admin`, {
+		...defaultHeaders,
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+};
+
 // NOTE delete a question
 export const deleteQuestionAPIMethod = (questionId) => {
 	return fetch(`/api/questions/${questionId}`, {
