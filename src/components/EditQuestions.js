@@ -212,14 +212,6 @@ function EditQuestions({
 					</div>
 				))}
 			</div>
-
-			{/* REVIEW we might need to delete this button if we follow "onChange->save to DB" system */}
-			<input
-				className="save-questions"
-				type="submit"
-				value="Save"
-				onClick={saveUpdatedQuestion}
-			/>
 		</div>
 	);
 }
