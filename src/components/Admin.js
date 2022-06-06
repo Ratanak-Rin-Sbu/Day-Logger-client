@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 import {
 	deleteUserByIdAPIMethod,
+	getBooleanResponsesAPIMethod,
+	getMcqResponsesAPIMethod,
+	getNumberResponsesAPIMethod,
 	getQuestionsAPIMethod,
+	getTextResponsesAPIMethod,
 	getUsersAPIMethod,
 } from '../api/client';
 
@@ -12,12 +16,48 @@ function Admin({ profile, setProfile }) {
 
 	useEffect(() => {
 		getAllUsers();
+		getTotalNumNR();
+		getTotalNumBR();
+		getTotalNumTR();
+		getTotalNumMR();
 	}, []);
 
 	const getAllUsers = async () => {
 		const fetchedUsers = await getUsersAPIMethod();
 		console.table(fetchedUsers);
 		setUsers(fetchedUsers);
+	};
+
+	const getTotalNumNR = async () => {
+		const fetchedNR = await getNumberResponsesAPIMethod();
+		console.log(
+			'🚀 ~ file: Admin.js ~ line 33 ~ getTotalNumNR ~ fetchedNR',
+			fetchedNR
+		);
+	};
+
+	const getTotalNumBR = async () => {
+		const fetchedBR = await getBooleanResponsesAPIMethod();
+		console.log(
+			'🚀 ~ file: Admin.js ~ line 41 ~ getTotalNumBR ~ fetchedBR',
+			fetchedBR
+		);
+	};
+
+	const getTotalNumTR = async () => {
+		const fetchedTR = await getTextResponsesAPIMethod();
+		console.log(
+			'🚀 ~ file: Admin.js ~ line 49 ~ getTotalNumTR ~ fetchedTR',
+			fetchedTR
+		);
+	};
+
+	const getTotalNumMR = async () => {
+		const fetchedMR = await getMcqResponsesAPIMethod();
+		console.log(
+			'🚀 ~ file: Admin.js ~ line 57 ~ getTotalNumMR ~ fetchedMR',
+			fetchedMR
+		);
 	};
 
 	const deleteUser = async (userId) => {
