@@ -158,7 +158,9 @@ function Home({ profile, setProfile, setIsLogin }) {
 						View Data
 					</label>
 					<label
-						className={`btn-home ${isAdminPage ? 'active' : ''}`}
+						className={`btn-home ${
+							profile.isAdmin === false ? 'hide' : isAdminPage ? 'active' : ''
+						}`}
 						id="btn-open-edit-questions"
 						onClick={openAdmin}
 					>

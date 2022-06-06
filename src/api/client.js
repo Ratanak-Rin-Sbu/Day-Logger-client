@@ -193,6 +193,16 @@ export const updateUserAPIMethod = (user) => {
 		.then();
 };
 
+// NOTE delete a user by id
+export const deleteUserByIdAPIMethod = (userId) => {
+	return fetch(`/api/users/${userId}`, {
+		...defaultHeaders,
+		method: 'DELETE',
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+};
+
 // NOTE upload an image to Cloudinary
 export const uploadImageToCloudinaryAPIMethod = (formData) => {
 	const cloudName = 'sjchae-cloud';

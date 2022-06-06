@@ -275,6 +275,10 @@ h2 {
 	cursor: pointer;
 }
 
+.btn-home.hide {
+	display: none;
+}
+
 #button-profile {
 	display: inline-flex;
 	align-items: center;
@@ -475,6 +479,46 @@ h2 {
 }
 
 /* NOTE Admin section */
+.admin-wrapper {
+	padding: 50px;
+}
+
+.user-info-wrapper {
+	display: flex;
+	width: 100%;
+	height: fit-content;
+	margin-bottom: 30px;
+	padding: 10px;
+	border: 1px solid black;
+	border-radius: 15px;
+	background-color: white;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.user-info-label {
+	font-size: large;
+}
+
+.user-info {
+	width: 200px;
+	font-size: large;
+	font-weight: bold;
+}
+
+.info-box {
+	margin-bottom: 5px;
+}
+
+#btn-delete-users {
+	border: none;
+	border-radius: 10px;
+	width: 100px;
+	height: 70px;
+	color: white;
+	background-color: #f76b8a;
+	font-size: 20px;
+}
 
 /* NOTE Profile section */
 .profile {
