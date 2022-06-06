@@ -9,14 +9,14 @@ function Login({ setProfile, setIsLogin }) {
 	const [show, setShow] = useState(false);
 
 	const onChangeEmail = (event) => {
-		console.log(event.target.value);
+		// console.log(event.target.value);
 		document.getElementById('login-error-msg').style.display = 'none';
 		let loginEmail = event.target.value;
 		setLoginEmail(loginEmail);
 	};
 
 	const onChangePassword = (event) => {
-		console.log(event.target.value);
+		// console.log(event.target.value);
 		document.getElementById('login-error-msg').style.display = 'none';
 		let loginPassword = event.target.value;
 		setLoginPassword(loginPassword);
@@ -31,8 +31,8 @@ function Login({ setProfile, setIsLogin }) {
 				password: loginPassword,
 			});
 			console.log('user: ', user);
-      setProfile(user);
-      console.log('LOGIN SUCCESSFULL!');
+			setProfile(user);
+			console.log('LOGIN SUCCESSFULL!');
 		} catch (e) {
 			document.getElementById('login-error-msg').style.display = 'block';
 			console.log(e);
@@ -44,8 +44,8 @@ function Login({ setProfile, setIsLogin }) {
 		<div id="start-page">
 			<div id="wrapper-login">
 				<div id="login-title">
-					<h1>Notes</h1>
-					<h2>Organize all your thoughts in one place</h2>
+					<h1>Day Logger</h1>
+					<h2>Create and manage questions!</h2>
 				</div>
 				<div id="login-overlay">
 					<div id="login-input">
@@ -73,7 +73,7 @@ function Login({ setProfile, setIsLogin }) {
 						</button>
 						<hr />
 						<button id="btn-create" onClick={() => setShow(true)}>
-							Create New Account
+							Register Account
 						</button>
 					</div>
 				</div>

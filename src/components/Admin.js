@@ -1,34 +1,35 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getQuestionsAPIMethod, getUsersAPIMethod } from '../api/client';
 
 function Admin({ profile, setProfile }) {
+	const [users, setUsers] = useState([]);
+	console.table('logged in user: ', profile);
+	console.log('isAdmin ???: ', profile.isAdmin);
+	const getAllUsers = async () => {
+		const fetchedUsers = await getUsersAPIMethod();
+		console.table(fetchedUsers);
+		setUsers(fetchedUsers);
+	};
 	useEffect(() => {
-		// getUsersAPIMethod().then((response) => {
-		// 	console.table(response);
-		// });
-		console.table(profile);
-		console.log('isAdmin ???: ', profile.isAdmin);
-		const getAllUsers = async () => {
-			const allUsers = await getUsersAPIMethod();
-			console.table(allUsers);
-		};
 		getAllUsers();
 	}, []);
+	// const getAllUsers = async () => {
+	// 	const fetchedUsers = await getUsersAPIMethod();
+	// 	console.log(fetchedUsers);
+	// 	return fetchedUsers;
+	// };
+	// const users = getAllUsers();
+	// console.log('🚀 ~ file: Admin.js ~ line 21 ~ Admin ~ users', users);
 
 	return (
 		<div className="admin-wrapper">
-			<div className="unauthorized">
-				<p>You do not have access to this page</p>
-				<p>You must be logged in as an administrator</p>
-			</div>
 			<div className="user-info">
-				map users here
-				{/* FIXME map is not a function? profile is a funciton not an array? */}
-				{/* {profile.map((prof) => (
-					<div className="user-name" key={prof._id}>
-						{prof.name}
+				{users.map((user) => (
+					<div className="user-info" key={user._id}>
+						<div className="user-name">{user.name}</div>
+						<div className="user-email">{user.email}</div>
 					</div>
-				))} */}
+				))}
 			</div>
 		</div>
 	);

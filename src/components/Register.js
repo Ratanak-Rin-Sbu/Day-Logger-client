@@ -61,7 +61,7 @@ function Register({ setProfile, show, onClose }) {
 		<div id="register-modal" onClick={onClose}>
 			<div id="wrapper-register" onClick={(e) => e.stopPropagation()}>
 				<div id="register-header">
-					<h1 id="register-title">Sign Up</h1>
+					<h1 id="register-title">Register</h1>
 					<button id="btn-register-close" onClick={onClose}>
 						X
 					</button>
@@ -85,7 +85,7 @@ function Register({ setProfile, show, onClose }) {
 				<div id="register-error-msg">Error: Invalid email and/or password</div>
 				<div id="btn-register-container">
 					<button id="btn-register" onClick={handleRegister}>
-						Sign Up
+						Register
 					</button>
 				</div>
 			</div>

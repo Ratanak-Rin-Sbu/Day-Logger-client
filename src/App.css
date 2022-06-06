@@ -44,8 +44,6 @@ button:hover {
 	cursor: pointer;
 }
 
-
-
 /* NOTE login section */
 #wrapper-login {
 	position: absolute;
@@ -268,16 +266,15 @@ h2 {
 .btn-home {
 	margin: auto 0;
 	padding-right: 30px;
-  cursor: pointer;
+	cursor: pointer;
 }
 
 .btn-home.active {
 	color: #27b3b3;
 	text-decoration: underline;
-  cursor: pointer;
+	cursor: pointer;
 }
 
-/* REVIEW border-radius does not seem to work here so I just made the bg transparent */
 #button-profile {
 	display: inline-flex;
 	align-items: center;
@@ -470,12 +467,14 @@ h2 {
 .btn-view-data.active {
 	color: #27b3b3;
 	text-decoration: underline;
-  cursor: pointer;
+	cursor: pointer;
 }
 
 .view-by-question .question-text {
 	margin-bottom: 30px;
 }
+
+/* NOTE Admin section */
 
 /* NOTE Profile section */
 .profile {
