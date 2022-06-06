@@ -64,7 +64,6 @@ function LogDay({ questions, setQuestions }) {
 		});
 		setDate();
 	}, []);
-	console.dir(savedMcqResponses);
 
 	const setDate = (newDate) => {
 		const date = newDate || new Date();
@@ -192,7 +191,7 @@ function LogDay({ questions, setQuestions }) {
 				});
 			}
 
-			if (questions[i].type === 'boolean') {
+			else if (questions[i].type === 'boolean') {
 				const data = {
 					response: booleanResponses[booleanCounter2++],
 					date: date,
@@ -204,7 +203,7 @@ function LogDay({ questions, setQuestions }) {
 				});
 			}
 
-			if (questions[i].type === 'text') {
+			else if (questions[i].type === 'text') {
 				const data = {
 					response: textResponses[textCounter2++],
 					date: date,
@@ -229,6 +228,15 @@ function LogDay({ questions, setQuestions }) {
 			}
 		}
 	};
+
+	const isEmpty = (id, arr) => {
+		for (let i=0; i<arr.length; i++) {
+			if (id === arr[i].di) {
+				return false;
+			}
+		}
+		return true;
+	}
 
 	if (!questions.length) {
 		return (
@@ -274,9 +282,16 @@ function LogDay({ questions, setQuestions }) {
 														defaultValue={""}
 														onChange={(e) => debounceOnChangeNumber(e.target.value, question._id)}
 													></input>
+												) : ((isEmpty(question._id, savedNumberResponses.filter((filteredResponse) => (filteredResponse.date === selectedDate))))) ? (
+													<input
+														className="number-type"
+														key={`${Math.floor((Math.random() * 1000))}-min`}
+														defaultValue={""}
+														onChange={(e) => debounceOnChangeNumber(e.target.value, question._id)}
+													></input>
 												) : (
 													<div>
-														{(savedNumberResponses.filter((filteredResponse) => (filteredResponse.date === selectedDate)).map((savedNumber) => (
+														{(savedNumberResponses.filter((filteredResponse) => (filteredResponse.date === selectedDate)).map((savedNumber, index) => (
 															<div>
 																{((savedNumber.date === selectedDate && savedNumber.di === question._id) && savedNumber.response) ? (
 																	<input
@@ -294,6 +309,25 @@ function LogDay({ questions, setQuestions }) {
 										) : question.type === 'boolean' ? (
 											<div>
 												{!(savedBooleanResponses.filter((filteredResponse) => (filteredResponse.date === selectedDate))).length ? (
+													<div className='boolean'>
+														<input
+															className="boolean-type"
+															type="radio"
+															name={question._id}
+															value="True"
+															onChange={(e) => onChangeBoolean(e.target.value, question._id)}
+														></input>
+														<div className="boolean-text">True</div>
+														<input
+															className="boolean-type"
+															type="radio"
+															name={question._id}
+															value="False"
+															onChange={(e) => onChangeBoolean(e.target.value, question._id)}
+														></input>
+														<div className="boolean-text">False</div>
+													</div>
+												) : ((isEmpty(question._id, savedBooleanResponses.filter((filteredResponse) => (filteredResponse.date === selectedDate))))) ? (
 													<div className='boolean'>
 														<input
 															className="boolean-type"
@@ -396,6 +430,13 @@ function LogDay({ questions, setQuestions }) {
 														defaultValue={""}
 														onChange={(e) => debounceOnChangeText(e.target.value, question._id)}
 													></input>
+												) : ((isEmpty(question._id, savedTextResponses.filter((filteredResponse) => (filteredResponse.date === selectedDate))))) ? (
+													<input
+														className="text-type"
+														key={`${Math.floor((Math.random() * 1000))}-min`}
+														defaultValue={""}
+														onChange={(e) => debounceOnChangeText(e.target.value, question._id)}
+													></input>
 												) : (
 													<div>
 														{(savedTextResponses.filter((filteredResponse) => (filteredResponse.date === selectedDate)).map((savedText) => (
@@ -416,6 +457,39 @@ function LogDay({ questions, setQuestions }) {
 										) : question.type === 'multiple-choice' ? (
 											<div>
 												{!(savedMcqResponses.filter((filteredResponse) => (filteredResponse.date === selectedDate))).length ? (
+													<div>
+														<div className="choices">
+															<input
+																className="multiple-choice-type"
+																type="radio"
+																name={question._id}
+																value={question.choices[0]}
+																onChange={(e) => onChangeMcq(e.target.value, question._id)}
+															></input>
+															<div className="mcq-text">{question.choices[0]}</div>
+														</div>
+														<div className="choices">
+															<input
+																className="multiple-choice-type"
+																type="radio"
+																name={question._id}
+																value={question.choices[1]}
+																onChange={(e) => onChangeMcq(e.target.value, question._id)}
+															></input>
+															<div className="mcq-text">{question.choices[1]}</div>
+														</div>
+														<div className="choices">
+															<input
+																className="multiple-choice-type"
+																type="radio"
+																name={question._id}
+																value={question.choices[2]}
+																onChange={(e) => onChangeMcq(e.target.value, question._id)}
+															></input>
+															<div className="mcq-text">{question.choices[2]}</div>
+														</div>
+													</div>
+												) : ((isEmpty(question._id, savedMcqResponses.filter((filteredResponse) => (filteredResponse.date === selectedDate))))) ? (
 													<div>
 														<div className="choices">
 															<input

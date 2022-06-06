@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { deleteQuestionAPIMethod, getQuestionsAPIMethod } from '../api/client';
+import { createQuestionAPIMethod, getQuestionsAPIMethod } from '../api/client';
 
 function EditQuestions({
 	questions,
