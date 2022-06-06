@@ -196,7 +196,9 @@ function Home({ profile, setProfile, setIsLogin }) {
 				/>
 			)}
 			{isViewDataPage && <ViewData />}
-			{isAdminPage && <Admin profile={profile} setProfile={setProfile} />}
+			{profile.isAdmin === true
+				? isAdminPage && <Admin profile={profile} setProfile={setProfile} />
+				: null}
 			{isProfilePage && (
 				<Profile
 					profile={profile}
