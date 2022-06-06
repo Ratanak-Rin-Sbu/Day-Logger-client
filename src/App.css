@@ -451,6 +451,32 @@ h2 {
 	margin: 0 0 10px 10px;
 }
 
+/* NOTE View Data Section */
+.view-data {
+	padding: 30px 10%;
+}
+
+.view-data .navigation {
+	margin-bottom: 50px;
+	padding: 0 30%;
+}
+
+.view-data .main-title {
+	margin-bottom: 50px;
+	display: flex;
+	justify-content: flex-start;
+}
+
+.btn-view-data.active {
+	color: #27b3b3;
+	text-decoration: underline;
+  cursor: pointer;
+}
+
+.view-by-question .question-text {
+	margin-bottom: 30px;
+}
+
 /* NOTE Profile section */
 .profile {
 	background-color: white;

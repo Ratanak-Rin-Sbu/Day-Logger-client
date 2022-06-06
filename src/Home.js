@@ -194,7 +194,7 @@ function Home({ profile, setProfile, setIsLogin }) {
 					deleteQuestion={deleteQuestion}
 				/>
 			)}
-			{isViewDataPage && <ViewData />}
+			{isViewDataPage && <ViewData questions={questions} setQuestions={setQuestions} />}
 			{isAdminPage && <Admin profile={profile} setProfile={setProfile} />}
 			{isProfilePage && (
 				<Profile

@@ -58,6 +58,24 @@ export const createTextResponseAPIMethod = (response) => {
       .then(parseJSON);
 }
 
+export const createBooleanResponseAPIMethod = (response) => {
+  return fetch(`api/boolean/responses`, {
+      ...defaultHeaders,
+      method: 'POST', // The method defaults to GET
+      body: JSON.stringify(response),
+  }).then(checkStatus)
+      .then(parseJSON);
+}
+
+export const createMcqResponseAPIMethod = (response) => {
+  return fetch(`api/mcq/responses`, {
+      ...defaultHeaders,
+      method: 'POST', // The method defaults to GET
+      body: JSON.stringify(response),
+  }).then(checkStatus)
+      .then(parseJSON);
+}
+
 export const getNumberResponsesAPIMethod = () => {
   return fetch(`api/number/responses`, {
       ...defaultHeaders,
@@ -67,6 +85,20 @@ export const getNumberResponsesAPIMethod = () => {
 
 export const getTextResponsesAPIMethod = () => {
   return fetch(`api/text/responses`, {
+      ...defaultHeaders,
+  }).then(checkStatus)
+      .then(parseJSON);
+}
+
+export const getBooleanResponsesAPIMethod = () => {
+  return fetch(`api/boolean/responses`, {
+      ...defaultHeaders,
+  }).then(checkStatus)
+      .then(parseJSON);
+}
+
+export const getMcqResponsesAPIMethod = () => {
+  return fetch(`api/mcq/responses`, {
       ...defaultHeaders,
   }).then(checkStatus)
       .then(parseJSON);
