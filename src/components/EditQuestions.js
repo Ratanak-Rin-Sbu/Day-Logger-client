@@ -10,18 +10,6 @@ function EditQuestions({
 	addQuestion,
 	deleteQuestion,
 }) {
-	// const [questions, setQuestions] = useState([]);
-
-	// useEffect(() => {
-	// 	GetQuestions();
-	// }, []);
-
-	// const GetQuestions = () => {
-	// 	fetch('/api/questions')
-	// 		.then((res) => res.json())
-	// 		.then((data) => setQuestions(data))
-	// 		.catch((err) => console.error('Error: ', err));
-	// };
 
 	useEffect(() => {
 		getQuestionsAPIMethod().then((questions) => {
@@ -39,7 +27,6 @@ function EditQuestions({
 					type: questions[i].type,
 					date: questions[i].date,
 					choices: questions[i].choices,
-					responses: questions[i].responses,
 				};
 				saveUpdatedQuestion(data);
 			}
@@ -57,7 +44,6 @@ function EditQuestions({
 					type: type,
 					date: questions[i].date,
 					choices: questions[i].choices,
-					responses: questions[i].responses,
 				};
 				saveUpdatedQuestion(data);
 			}
@@ -75,7 +61,6 @@ function EditQuestions({
 					type: questions[i].type,
 					date: questions[i].date,
 					choices: [option],
-					responses: questions[i].responses,
 				};
 				saveUpdatedQuestion(data);
 			}
@@ -93,7 +78,6 @@ function EditQuestions({
 					type: questions[i].type,
 					date: questions[i].date,
 					choices: [...questions[i].choices, option],
-					responses: questions[i].responses,
 				};
 				saveUpdatedQuestion(data);
 			}
@@ -111,7 +95,6 @@ function EditQuestions({
 					type: questions[i].type,
 					date: questions[i].date,
 					choices: [...questions[i].choices, option],
-					responses: questions[i].responses,
 				};
 				saveUpdatedQuestion(data);
 			}
@@ -130,7 +113,6 @@ function EditQuestions({
 				type: updates.type,
 				date: updates.date,
 				choices: updates.choices,
-				responses: updates.responses,
 			}),
 		}).then((res) => res.json());
 	};

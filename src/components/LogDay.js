@@ -14,11 +14,6 @@ import {
 
 function LogDay({ questions, setQuestions }) {
 	const [selectedDate, setSelectedDate] = useState(null);
-	// var today = new Date();
-	// let year = today.getFullYear();
-	// let month = today.getMonth() + 1;
-	// let date = today.getDate();
-
 	
 
 	const [savedNumberResponses, setSavedNumberResponses] = useState([]);
@@ -46,30 +41,6 @@ function LogDay({ questions, setQuestions }) {
 	// textResponses.splice(0, textResponses.length);
 	// mcqResponses.splice(0, mcqResponses.length);
 
-	const emptyNumber = {
-		response: "",
-		date: "",
-		di: "",
-		type: "number",
-	};
-	const emptyText = {
-		response: "",
-		date: "",
-		di: "",
-		type: "text",
-	};
-	const emptyBoolean = {
-		response: "",
-		date: "",
-		di: "",
-		type: "boolean",
-	};
-	const emptyMcq = {
-		response: "",
-		date: "",
-		di: "",
-		type: "multiple-choice",
-	};
 	useEffect(() => {
 		
 		getQuestionsAPIMethod().then((questions) => {
@@ -93,8 +64,7 @@ function LogDay({ questions, setQuestions }) {
 		});
 		setDate();
 	}, []);
-	// console.dir(savedTextResponses);
-	console.dir(savedNumberResponses);
+	console.dir(savedMcqResponses);
 
 	const setDate = (newDate) => {
 		const date = newDate || new Date();
