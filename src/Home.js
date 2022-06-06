@@ -11,6 +11,7 @@ import {
 } from './api/client';
 
 function Home({ profile, setProfile, setIsLogin }) {
+	console.log('🚀 ~ file: Home.js ~ line 14 ~ Home ~ profile', profile);
 	const [isLogDayPage, setIsLogDayPage] = useState(true);
 	const [isEditQuestionsPage, setIsEditQuestionsPage] = useState(false);
 	const [isViewDataPage, setIsViewDataPage] = useState(false);
@@ -194,8 +195,12 @@ function Home({ profile, setProfile, setIsLogin }) {
 					deleteQuestion={deleteQuestion}
 				/>
 			)}
-			{isViewDataPage && <ViewData questions={questions} setQuestions={setQuestions} />}
-			{isAdminPage && <Admin profile={profile} setProfile={setProfile} />}
+			{isViewDataPage && (
+				<ViewData questions={questions} setQuestions={setQuestions} />
+			)}
+			{profile.isAdmin === true
+				? isAdminPage && <Admin profile={profile} setProfile={setProfile} />
+				: null}
 			{isProfilePage && (
 				<Profile
 					profile={profile}

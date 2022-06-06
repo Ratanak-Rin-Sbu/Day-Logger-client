@@ -4,6 +4,7 @@ const defaultHeaders = {
 	},
 };
 
+// NOTE create a question
 export const createQuestionAPIMethod = (question) => {
 	return fetch(`api/questions`, {
 		...defaultHeaders,
@@ -14,6 +15,7 @@ export const createQuestionAPIMethod = (question) => {
 		.then(parseJSON);
 };
 
+// NOTE get all questions
 export const getQuestionsAPIMethod = () => {
 	return fetch(`api/questions`, {
 		...defaultHeaders,
@@ -22,6 +24,7 @@ export const getQuestionsAPIMethod = () => {
 		.then(parseJSON);
 };
 
+// NOTE update questions
 export const updateQuestionsAPIMethod = (questionId) => {
 	return fetch(`api/questions/${questionId}`, {
 		...defaultHeaders,
@@ -31,6 +34,7 @@ export const updateQuestionsAPIMethod = (questionId) => {
 		.then(parseJSON);
 };
 
+// NOTE delete a question
 export const deleteQuestionByIdAPIMethod = (questionId) => {
 	return fetch(`api/questions/${questionId}`, {
 		...defaultHeaders,
@@ -40,80 +44,85 @@ export const deleteQuestionByIdAPIMethod = (questionId) => {
 		.then(parseJSON);
 };
 
+// NOTE create a number type response
 export const createNumberResponseAPIMethod = (response) => {
-  return fetch(`api/number/responses`, {
-      ...defaultHeaders,
-      method: 'POST', // The method defaults to GET
-      body: JSON.stringify(response),
-  }).then(checkStatus)
-      .then(parseJSON);
-}
+	return fetch(`api/number/responses`, {
+		...defaultHeaders,
+		method: 'POST', // The method defaults to GET
+		body: JSON.stringify(response),
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+};
 
+// NOTE create a text type response
 export const createTextResponseAPIMethod = (response) => {
-  return fetch(`api/text/responses`, {
-      ...defaultHeaders,
-      method: 'POST', // The method defaults to GET
-      body: JSON.stringify(response),
-  }).then(checkStatus)
-      .then(parseJSON);
-}
+	return fetch(`api/text/responses`, {
+		...defaultHeaders,
+		method: 'POST', // The method defaults to GET
+		body: JSON.stringify(response),
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+};
 
+// NOTE create a boolean type response
 export const createBooleanResponseAPIMethod = (response) => {
-  return fetch(`api/boolean/responses`, {
-      ...defaultHeaders,
-      method: 'POST', // The method defaults to GET
-      body: JSON.stringify(response),
-  }).then(checkStatus)
-      .then(parseJSON);
-}
+	return fetch(`api/boolean/responses`, {
+		...defaultHeaders,
+		method: 'POST', // The method defaults to GET
+		body: JSON.stringify(response),
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+};
 
+// NOTE create a multiple choice type response
 export const createMcqResponseAPIMethod = (response) => {
-  return fetch(`api/mcq/responses`, {
-      ...defaultHeaders,
-      method: 'POST', // The method defaults to GET
-      body: JSON.stringify(response),
-  }).then(checkStatus)
-      .then(parseJSON);
-}
+	return fetch(`api/mcq/responses`, {
+		...defaultHeaders,
+		method: 'POST', // The method defaults to GET
+		body: JSON.stringify(response),
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+};
 
+// NOTE get number type response
 export const getNumberResponsesAPIMethod = () => {
-  return fetch(`api/number/responses`, {
-      ...defaultHeaders,
-  }).then(checkStatus)
-      .then(parseJSON);
-}
+	return fetch(`api/number/responses`, {
+		...defaultHeaders,
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+};
 
+// NOTE get text type responses
 export const getTextResponsesAPIMethod = () => {
-  return fetch(`api/text/responses`, {
-      ...defaultHeaders,
-  }).then(checkStatus)
-      .then(parseJSON);
-}
+	return fetch(`api/text/responses`, {
+		...defaultHeaders,
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+};
 
+// NOTE get boolean type responses
 export const getBooleanResponsesAPIMethod = () => {
-  return fetch(`api/boolean/responses`, {
-      ...defaultHeaders,
-  }).then(checkStatus)
-      .then(parseJSON);
-}
+	return fetch(`api/boolean/responses`, {
+		...defaultHeaders,
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+};
 
+// NOTE get multiple choice type responses
 export const getMcqResponsesAPIMethod = () => {
-  return fetch(`api/mcq/responses`, {
-      ...defaultHeaders,
-  }).then(checkStatus)
-      .then(parseJSON);
-}
-
-function checkStatus(response) {
-	if (response.status >= 200 && response.status < 300) {
-		return response;
-	} else {
-		const error = new Error(`${response.statusText}`);
-		error.status = response.statusText;
-		error.response = response;
-		throw error;
-	}
-}
+	return fetch(`api/mcq/responses`, {
+		...defaultHeaders,
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+};
 
 // NOTE delete a question
 export const deleteQuestionAPIMethod = (questionId) => {
@@ -194,6 +203,17 @@ export const uploadImageToCloudinaryAPIMethod = (formData) => {
 		.then(checkStatus)
 		.then(parseJSON);
 };
+
+function checkStatus(response) {
+	if (response.status >= 200 && response.status < 300) {
+		return response;
+	} else {
+		const error = new Error(`${response.statusText}`);
+		error.status = response.statusText;
+		error.response = response;
+		throw error;
+	}
+}
 
 function parseJSON(response) {
 	return response.json();

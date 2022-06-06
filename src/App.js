@@ -6,10 +6,7 @@ import { getUserByIdAPIMethod } from './api/client';
 function App() {
 	const [profile, setProfile] = useState();
 	const [isLogin, setIsLogin] = useState(true);
-
-	// REVIEW source form previous assignment; review and change before use
-	// NOTE autoLogin function
-
+ 
 	useEffect(() => {}, []);
 
 	useEffect(() => {

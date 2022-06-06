@@ -2,12 +2,17 @@ import { useEffect } from 'react';
 import { getQuestionsAPIMethod, getUsersAPIMethod } from '../api/client';
 
 function Admin({ profile, setProfile }) {
-	console.table(profile);
-
 	useEffect(() => {
-		getUsersAPIMethod().then((response) => {
-			console.log(response);
-		});
+		// getUsersAPIMethod().then((response) => {
+		// 	console.table(response);
+		// });
+		console.table(profile);
+		console.log('isAdmin ???: ', profile.isAdmin);
+		const getAllUsers = async () => {
+			const allUsers = await getUsersAPIMethod();
+			console.table(allUsers);
+		};
+		getAllUsers();
 	}, []);
 
 	return (
@@ -28,5 +33,25 @@ function Admin({ profile, setProfile }) {
 		</div>
 	);
 }
+
+// router.get(
+//   "/users",
+//   wrapAsync(async function (req, res) {
+//     const users = await User.find().sort({
+//       date: -1,
+//     });
+//     const returnUsers = await Promise.all(
+//       users.map(async function (user) {
+//         const questions = await Question.find({ user: user._id });
+//         const responses = questions.map(
+//           (q) => Object.keys(q.responses.toJSON()).length
+//         );
+//         const sum = responses.reduce((a, c) => a + c, 0);
+//         return { ...user._doc, questions: questions.length, responses: sum };
+//       })
+//     );
+//     res.json(returnUsers);
+//   })
+// );
 
 export default Admin;
