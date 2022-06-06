@@ -39,7 +39,6 @@ function Home({ profile, setProfile, setIsLogin }) {
 			console.log('Question created');
 		});
 		setQuestions([data, ...questions]);
-		console.log(data._id);
 	};
 
 	const deleteQuestion = async (idToDelete) => {

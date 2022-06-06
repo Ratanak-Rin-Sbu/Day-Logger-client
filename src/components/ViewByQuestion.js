@@ -74,7 +74,24 @@ const ViewByQuestion = ({ questions, setQuestions }) => {
                 <div className="question" key={question._id}>
                   <div className="question-text">{question.text}</div>
                   {question.type === 'number' ? (
-                    <div>number</div>
+                    <LineChart
+                      width={800}
+                      height={300}
+                      data={savedNumberResponses.filter((filteredResponse) => (filteredResponse.di === question._id))}
+                      margin={{
+                        top: 5,
+                        right: 30,
+                        left: 20,
+                        bottom: 5,
+                      }}
+                    >
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="date" />
+                      <YAxis />
+                      <Tooltip />
+                      <Legend />
+                      <Line type="monotone" dataKey="response" stroke="#8884d8" activeDot={{ r: 8 }} />
+                    </LineChart>
                   ) : (question.type === 'boolean') ? (
                     <BarChart
                       width={500}
@@ -96,7 +113,14 @@ const ViewByQuestion = ({ questions, setQuestions }) => {
                       <Bar dataKey="False" fill="#82ca9d" />
                     </BarChart>
                   ) : (question.type === 'text') ? (
-                    <div>text</div>
+                    <div>
+                      {(savedTextResponses.filter((filteredResponse) => (filteredResponse.di === question._id)).map((savedText) => (
+                        <div className='text-response'>
+                          <div className='response'>{savedText.response}</div>
+                          <div className='date'>{savedText.date}</div>
+                        </div>
+                      )))}
+                    </div>
                   ) : (
                     
                     <BarChart

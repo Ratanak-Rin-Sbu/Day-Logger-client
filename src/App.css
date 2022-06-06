@@ -478,6 +478,27 @@ h2 {
 	margin-bottom: 30px;
 }
 
+.text-response {
+	display: flex;
+	justify-content: space-between;
+	background-color: #f8f9fa;
+	margin-bottom: 25px;
+	padding: 0 50px 0 20px;
+	margin-right: 50px;
+	margin-left: 3%;
+	border-radius: 3px;
+}
+
+.logday-wrapper .main-title {
+	margin-bottom: 50px;
+	display: flex;
+	justify-content: flex-start;
+}
+
+.view-data .logday-wrapper {
+	padding: 0 !important;
+}
+
 /* NOTE Admin section */
 .admin-wrapper {
 	padding: 50px;
