@@ -1,20 +1,27 @@
-# Getting Started with Create React App
+# Day-Logger
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Developed by Ratanak Rin and Seungjun Chae
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+This is a simple website where the user can Create, Read, Update, and Delete Questions and also manage to see the data logged.
 
-### `npm start`
+## How to access the website
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### You can clone our project
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Here is the GitHub link for our client side of the project: https://github.com/sjchae416/Day-Logger-client.git
+- Here is the GitHub link for our server side of the project: https://github.com/sjchae416/Day-Logger-server.git
+- Type $ npm start on the command line for both client and server side
+- We have built a script for convenience
 
-Team member email address
-Seungjun Chae: seungjun.chae@stonybrook.edu
-// REVIEW hey rin is this correct? plz check and delete this line
-Ratanak Rin: ratanak.rin@stonybrook.edu
+### You can access to the publically deployed link
+
+- Here is the link: https://day-logger.netlify.app/
+
+## Administrator
+
+We have an administrator account to manage other accounts.
+
+- Email: admin@admin.com
+- Password: Admin316
