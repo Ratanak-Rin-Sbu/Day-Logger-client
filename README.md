@@ -38,3 +38,6 @@ This is a simple website where the user can Create, Read, Update, and Delete Que
 
 - Email: test@test.com
 - Password: Test1234
+
+## Automated Unit Testing
+- To test: Navigate to "client" directory and run "npm test"
