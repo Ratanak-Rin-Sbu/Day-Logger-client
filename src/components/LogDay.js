@@ -410,7 +410,7 @@ function LogDay({ questions, setQuestions }) {
 					</button>
 					<div className="displaying-date">{}</div>
 					<button className="btn-next-date" onClick={getNextDate}>
-						{selectedDate === '6/7/2022' ? '' : '>'}
+						{'>'}
 					</button>
 				</div>
 			</div>
@@ -426,7 +426,7 @@ function LogDay({ questions, setQuestions }) {
 					{/* TODO we should display the today's date and then according to the date shown, we should show the corresponding responses :) */}
 					<div className="displaying-date">{selectedDate}</div>
 					<button className="btn-next-date" onClick={getNextDate}>
-						{selectedDate === '6/7/2022' ? '' : '>'}
+						{'>'}
 					</button>
 				</div>
 
