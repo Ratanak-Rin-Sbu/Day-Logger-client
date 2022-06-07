@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { registerUserAPIMethod } from '../api/client';
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function Register({ setProfile, show, onClose }) {
 	const [registerName, setRegisterName] = useState('');
@@ -58,7 +60,7 @@ function Register({ setProfile, show, onClose }) {
 	}
 
 	return (
-		<div id="register-modal" onClick={onClose}>
+		<div id="register-modal" onClick={onClose}  data-aos="fade-up" data-aos-duration="500">
 			<div id="wrapper-register" onClick={(e) => e.stopPropagation()}>
 				<div id="register-header">
 					<h1 id="register-title">Register</h1>

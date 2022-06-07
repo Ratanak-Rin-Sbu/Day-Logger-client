@@ -1,12 +1,19 @@
 // import React, { useState } from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { loginUserAPIMethod } from '../api/client';
 import Register from './Register';
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function Login({ setProfile, setIsLogin }) {
 	const [loginEmail, setLoginEmail] = useState('');
 	const [loginPassword, setLoginPassword] = useState('');
 	const [show, setShow] = useState(false);
+
+	useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  }, []);
 
 	const onChangeEmail = (event) => {
 		// console.log(event.target.value);
@@ -42,7 +49,7 @@ function Login({ setProfile, setIsLogin }) {
 	return (
 		// NOTE delete div#start-page and RegisterPage component to restore
 		<div id="start-page">
-			<div id="wrapper-login">
+			<div id="wrapper-login" data-aos="fade-down" data-aos-duration="2000">
 				<div id="login-title">
 					<h1>Day Logger</h1>
 					<h2>Create and manage questions!</h2>
