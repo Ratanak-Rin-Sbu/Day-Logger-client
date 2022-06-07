@@ -15,7 +15,6 @@ import {
 
 function LogDay({ questions, setQuestions }) {
 	const [selectedDate, setSelectedDate] = useState(null);
-	
 
 	const [savedNumberResponses, setSavedNumberResponses] = useState([]);
 	const [numberResponses, setNumberResponses] = useState([]);
@@ -172,57 +171,134 @@ function LogDay({ questions, setQuestions }) {
 		const data = await fetch('/api/number/responses/' + idToDelete, {
 			method: 'DELETE',
 		}).then((res) => res.json());
-		setSavedNumberResponses(savedNumberResponses.filter((numberResponse) => numberResponse._id !== idToDelete));
-		console.log("Deleted");
+		setSavedNumberResponses(
+			savedNumberResponses.filter(
+				(numberResponse) => numberResponse._id !== idToDelete
+			)
+		);
+		console.log('Deleted');
 	};
 
 	const deleteBooleanResponse = async (idToDelete) => {
 		const data = await fetch('/api/boolean/responses/' + idToDelete, {
 			method: 'DELETE',
 		}).then((res) => res.json());
-		setSavedBooleanResponses(savedBooleanResponses.filter((savedBooleanResponse) => savedBooleanResponse._id !== idToDelete));
-		console.log("Deleted");
+		setSavedBooleanResponses(
+			savedBooleanResponses.filter(
+				(savedBooleanResponse) => savedBooleanResponse._id !== idToDelete
+			)
+		);
+		console.log('Deleted');
 	};
 
 	const deleteTextResponse = async (idToDelete) => {
 		const data = await fetch('/api/text/responses/' + idToDelete, {
 			method: 'DELETE',
 		}).then((res) => res.json());
-		setSavedTextResponses(savedTextResponses.filter((textResponse) => textResponse._id !== idToDelete));
-		console.log("Deleted");
+		setSavedTextResponses(
+			savedTextResponses.filter(
+				(textResponse) => textResponse._id !== idToDelete
+			)
+		);
+		console.log('Deleted');
 	};
 
 	const deleteMcqResponse = async (idToDelete) => {
 		const data = await fetch('/api/mcq/responses/' + idToDelete, {
 			method: 'DELETE',
 		}).then((res) => res.json());
-		setSavedMcqResponses(savedMcqResponses.filter((mcqResponse) => mcqResponse._id !== idToDelete));
-		console.log("Deleted");
+		setSavedMcqResponses(
+			savedMcqResponses.filter((mcqResponse) => mcqResponse._id !== idToDelete)
+		);
+		console.log('Deleted');
 	};
 
 	const addResponse = (date) => {
-		if (savedNumberResponses.filter((filtered) => (filtered.date === selectedDate)).length ||
-				savedBooleanResponses.filter((filtered) => (filtered.date === selectedDate)).length ||
-				savedTextResponses.filter((filtered) => (filtered.date === selectedDate)).length ||
-				savedMcqResponses.filter((filtered) => (filtered.date === selectedDate)).length) {
-			if (savedNumberResponses.filter((filtered) => (filtered.date === selectedDate)).length) {
-				for (let n=0; n<savedNumberResponses.filter((filtered) => (filtered.date === selectedDate)).length; n++) {
-					deleteNumberResponse(savedNumberResponses.filter((filtered) => (filtered.date === selectedDate))[n]._id);
+		if (
+			savedNumberResponses.filter((filtered) => filtered.date === selectedDate)
+				.length ||
+			savedBooleanResponses.filter((filtered) => filtered.date === selectedDate)
+				.length ||
+			savedTextResponses.filter((filtered) => filtered.date === selectedDate)
+				.length ||
+			savedMcqResponses.filter((filtered) => filtered.date === selectedDate)
+				.length
+		) {
+			if (
+				savedNumberResponses.filter(
+					(filtered) => filtered.date === selectedDate
+				).length
+			) {
+				for (
+					let n = 0;
+					n <
+					savedNumberResponses.filter(
+						(filtered) => filtered.date === selectedDate
+					).length;
+					n++
+				) {
+					deleteNumberResponse(
+						savedNumberResponses.filter(
+							(filtered) => filtered.date === selectedDate
+						)[n]._id
+					);
 				}
 			}
-			if (savedTextResponses.filter((filtered) => (filtered.date === selectedDate)).length) {
-				for (let t=0; t<savedTextResponses.filter((filtered) => (filtered.date === selectedDate)).length; t++) {
-					deleteTextResponse(savedTextResponses.filter((filtered) => (filtered.date === selectedDate))[t]._id);
+			if (
+				savedTextResponses.filter((filtered) => filtered.date === selectedDate)
+					.length
+			) {
+				for (
+					let t = 0;
+					t <
+					savedTextResponses.filter(
+						(filtered) => filtered.date === selectedDate
+					).length;
+					t++
+				) {
+					deleteTextResponse(
+						savedTextResponses.filter(
+							(filtered) => filtered.date === selectedDate
+						)[t]._id
+					);
 				}
 			}
-			if (savedBooleanResponses.filter((filtered) => (filtered.date === selectedDate)).length) {
-				for (let b=0; b<savedBooleanResponses.filter((filtered) => (filtered.date === selectedDate)).length; b++) {
-					deleteBooleanResponse(savedBooleanResponses.filter((filtered) => (filtered.date === selectedDate))[b]._id);
+			if (
+				savedBooleanResponses.filter(
+					(filtered) => filtered.date === selectedDate
+				).length
+			) {
+				for (
+					let b = 0;
+					b <
+					savedBooleanResponses.filter(
+						(filtered) => filtered.date === selectedDate
+					).length;
+					b++
+				) {
+					deleteBooleanResponse(
+						savedBooleanResponses.filter(
+							(filtered) => filtered.date === selectedDate
+						)[b]._id
+					);
 				}
 			}
-			if (savedMcqResponses.filter((filtered) => (filtered.date === selectedDate)).length) {
-				for (let m=0; m<savedMcqResponses.filter((filtered) => (filtered.date === selectedDate)).length; m++) {
-					deleteMcqResponse(savedMcqResponses.filter((filtered) => (filtered.date === selectedDate))[m]._id);
+			if (
+				savedMcqResponses.filter((filtered) => filtered.date === selectedDate)
+					.length
+			) {
+				for (
+					let m = 0;
+					m <
+					savedMcqResponses.filter((filtered) => filtered.date === selectedDate)
+						.length;
+					m++
+				) {
+					deleteMcqResponse(
+						savedMcqResponses.filter(
+							(filtered) => filtered.date === selectedDate
+						)[m]._id
+					);
 				}
 			}
 
@@ -237,9 +313,7 @@ function LogDay({ questions, setQuestions }) {
 					createNumberResponseAPIMethod(data).then((response) => {
 						console.log('Response created');
 					});
-				}
-	
-				else if (questions[i].type === 'boolean') {
+				} else if (questions[i].type === 'boolean') {
 					const data = {
 						response: booleanResponses[booleanCounter2++],
 						date: date,
@@ -249,9 +323,7 @@ function LogDay({ questions, setQuestions }) {
 					createBooleanResponseAPIMethod(data).then((response) => {
 						console.log('Response created');
 					});
-				}
-	
-				else if (questions[i].type === 'text') {
+				} else if (questions[i].type === 'text') {
 					const data = {
 						response: textResponses[textCounter2++],
 						date: date,
@@ -285,9 +357,7 @@ function LogDay({ questions, setQuestions }) {
 					createNumberResponseAPIMethod(data).then((response) => {
 						console.log('Response created');
 					});
-				}
-	
-				else if (questions[i].type === 'boolean') {
+				} else if (questions[i].type === 'boolean') {
 					const data = {
 						response: booleanResponses[booleanCounter2++],
 						date: date,
@@ -297,9 +367,7 @@ function LogDay({ questions, setQuestions }) {
 					createBooleanResponseAPIMethod(data).then((response) => {
 						console.log('Response created');
 					});
-				}
-	
-				else if (questions[i].type === 'text') {
+				} else if (questions[i].type === 'text') {
 					const data = {
 						response: textResponses[textCounter2++],
 						date: date,
@@ -325,13 +393,13 @@ function LogDay({ questions, setQuestions }) {
 	};
 
 	const isEmpty = (id, arr) => {
-		for (let i=0; i<arr.length; i++) {
+		for (let i = 0; i < arr.length; i++) {
 			if (id === arr[i].di) {
 				return false;
 			}
 		}
 		return true;
-	}
+	};
 
 	if (!questions.length) {
 		return (
@@ -342,7 +410,7 @@ function LogDay({ questions, setQuestions }) {
 					</button>
 					<div className="displaying-date">{}</div>
 					<button className="btn-next-date" onClick={getNextDate}>
-						{'>'}
+						{selectedDate === '6/7/2022' ? '' : '>'}
 					</button>
 				</div>
 			</div>
@@ -358,95 +426,147 @@ function LogDay({ questions, setQuestions }) {
 					{/* TODO we should display the today's date and then according to the date shown, we should show the corresponding responses :) */}
 					<div className="displaying-date">{selectedDate}</div>
 					<button className="btn-next-date" onClick={getNextDate}>
-						{'>'}
+						{selectedDate === '6/7/2022' ? '' : '>'}
 					</button>
 				</div>
 
 				<div className="questions-list">
-					{savedNumberResponses.length || savedTextResponses.length || savedBooleanResponses.length || savedMcqResponses.length ? (
+					{savedNumberResponses.length ||
+					savedTextResponses.length ||
+					savedBooleanResponses.length ||
+					savedMcqResponses.length ? (
 						<div>
 							{questions.map((question) => (
 								<div className="question" key={question._id}>
 									<div className="question-text">{question.text}</div>
-										{question.type === 'number' ? (
-											<div>
-												{!(savedNumberResponses.filter((filteredResponse) => (filteredResponse.date === selectedDate))).length ? (
-													<input
-														className="number-type"
-														key={`${Math.floor((Math.random() * 1000))}-min`}
-														defaultValue={""}
-														onChange={(e) => debounceOnChangeNumber(e.target.value, question._id)}
-													></input>
-												) : ((isEmpty(question._id, savedNumberResponses.filter((filteredResponse) => (filteredResponse.date === selectedDate))))) ? (
-													<input
-														className="number-type"
-														key={`${Math.floor((Math.random() * 1000))}-min`}
-														defaultValue={""}
-														onChange={(e) => debounceOnChangeNumber(e.target.value, question._id)}
-													></input>
-												) : (
-													<div>
-														{(savedNumberResponses.filter((filteredResponse) => (filteredResponse.date === selectedDate)).map((savedNumber, index) => (
+									{question.type === 'number' ? (
+										<div>
+											{!savedNumberResponses.filter(
+												(filteredResponse) =>
+													filteredResponse.date === selectedDate
+											).length ? (
+												<input
+													className="number-type"
+													key={`${Math.floor(Math.random() * 1000)}-min`}
+													defaultValue={''}
+													onChange={(e) =>
+														debounceOnChangeNumber(e.target.value, question._id)
+													}
+												></input>
+											) : isEmpty(
+													question._id,
+													savedNumberResponses.filter(
+														(filteredResponse) =>
+															filteredResponse.date === selectedDate
+													)
+											  ) ? (
+												<input
+													className="number-type"
+													key={`${Math.floor(Math.random() * 1000)}-min`}
+													defaultValue={''}
+													onChange={(e) =>
+														debounceOnChangeNumber(e.target.value, question._id)
+													}
+												></input>
+											) : (
+												<div>
+													{savedNumberResponses
+														.filter(
+															(filteredResponse) =>
+																filteredResponse.date === selectedDate
+														)
+														.map((savedNumber, index) => (
 															<div>
-																{savedNumber.date === selectedDate && savedNumber.di === question._id && savedNumber.response ? (
+																{savedNumber.date === selectedDate &&
+																savedNumber.di === question._id &&
+																savedNumber.response ? (
 																	<input
 																		type="number"
 																		className="number-type"
-																		key={`${Math.floor(Math.random() * 1000)}-min`}
+																		key={`${Math.floor(
+																			Math.random() * 1000
+																		)}-min`}
 																		defaultValue={savedNumber.response}
-																		onChange={(e) => debounceOnChangeNumber(e.target.value, question._id)}
+																		onChange={(e) =>
+																			debounceOnChangeNumber(
+																				e.target.value,
+																				question._id
+																			)
+																		}
 																	></input>
 																) : (
 																	''
 																)}
 															</div>
-														)))}
-													</div>
-												)}
-											</div>
-										) : question.type === 'boolean' ? (
-											<div>
-												{!(savedBooleanResponses.filter((filteredResponse) => (filteredResponse.date === selectedDate))).length ? (
-													<div className='boolean'>
-														<input
-															className="boolean-type"
-															type="radio"
-															name={question._id}
-															value="True"
-															onChange={(e) => onChangeBoolean(e.target.value, question._id)}
-														></input>
-														<div className="boolean-text">True</div>
-														<input
-															className="boolean-type"
-															type="radio"
-															name={question._id}
-															value="False"
-															onChange={(e) => onChangeBoolean(e.target.value, question._id)}
-														></input>
-														<div className="boolean-text">False</div>
-													</div>
-												) : ((isEmpty(question._id, savedBooleanResponses.filter((filteredResponse) => (filteredResponse.date === selectedDate))))) ? (
-													<div className='boolean'>
-														<input
-															className="boolean-type"
-															type="radio"
-															name={question._id}
-															value="True"
-															onChange={(e) => onChangeBoolean(e.target.value, question._id)}
-														></input>
-														<div className="boolean-text">True</div>
-														<input
-															className="boolean-type"
-															type="radio"
-															name={question._id}
-															value="False"
-															onChange={(e) => onChangeBoolean(e.target.value, question._id)}
-														></input>
-														<div className="boolean-text">False</div>
-													</div>
-												) : (
-													<div>
-														{(savedBooleanResponses.filter((filteredResponse) => (filteredResponse.date === selectedDate)).map((savedBoolean) => (
+														))}
+												</div>
+											)}
+										</div>
+									) : question.type === 'boolean' ? (
+										<div>
+											{!savedBooleanResponses.filter(
+												(filteredResponse) =>
+													filteredResponse.date === selectedDate
+											).length ? (
+												<div className="boolean">
+													<input
+														className="boolean-type"
+														type="radio"
+														name={question._id}
+														value="True"
+														onChange={(e) =>
+															onChangeBoolean(e.target.value, question._id)
+														}
+													></input>
+													<div className="boolean-text">True</div>
+													<input
+														className="boolean-type"
+														type="radio"
+														name={question._id}
+														value="False"
+														onChange={(e) =>
+															onChangeBoolean(e.target.value, question._id)
+														}
+													></input>
+													<div className="boolean-text">False</div>
+												</div>
+											) : isEmpty(
+													question._id,
+													savedBooleanResponses.filter(
+														(filteredResponse) =>
+															filteredResponse.date === selectedDate
+													)
+											  ) ? (
+												<div className="boolean">
+													<input
+														className="boolean-type"
+														type="radio"
+														name={question._id}
+														value="True"
+														onChange={(e) =>
+															onChangeBoolean(e.target.value, question._id)
+														}
+													></input>
+													<div className="boolean-text">True</div>
+													<input
+														className="boolean-type"
+														type="radio"
+														name={question._id}
+														value="False"
+														onChange={(e) =>
+															onChangeBoolean(e.target.value, question._id)
+														}
+													></input>
+													<div className="boolean-text">False</div>
+												</div>
+											) : (
+												<div>
+													{savedBooleanResponses
+														.filter(
+															(filteredResponse) =>
+																filteredResponse.date === selectedDate
+														)
+														.map((savedBoolean) => (
 															<div>
 																{question && !savedBoolean.response ? (
 																	<div className="boolean">
@@ -455,19 +575,31 @@ function LogDay({ questions, setQuestions }) {
 																			type="radio"
 																			name={question._id}
 																			value="True"
-																			onChange={(e) => onChangeBoolean(e.target.value, question._id)}
+																			onChange={(e) =>
+																				onChangeBoolean(
+																					e.target.value,
+																					question._id
+																				)
+																			}
 																		></input>
 																		<div className="boolean-text">True</div>
-																		<input 
+																		<input
 																			className="boolean-type"
 																			type="radio"
 																			name={question._id}
 																			value="False"
-																			onChange={(e) => onChangeBoolean(e.target.value, question._id)}
+																			onChange={(e) =>
+																				onChangeBoolean(
+																					e.target.value,
+																					question._id
+																				)
+																			}
 																		></input>
 																		<div className="boolean-text">False</div>
 																	</div>
-																) : savedBoolean.date === selectedDate && savedBoolean.di === question._id && savedBoolean.response ? (
+																) : savedBoolean.date === selectedDate &&
+																  savedBoolean.di === question._id &&
+																  savedBoolean.response ? (
 																	<div>
 																		{savedBoolean.response === 'True' ? (
 																			<div className="boolean">
@@ -477,7 +609,12 @@ function LogDay({ questions, setQuestions }) {
 																					name={question._id}
 																					value="True"
 																					checked="checked"
-																					onChange={(e) => onChangeBoolean(e.target.value, question._id)}
+																					onChange={(e) =>
+																						onChangeBoolean(
+																							e.target.value,
+																							question._id
+																						)
+																					}
 																				></input>
 																				<div className="boolean-text">True</div>
 																				<input
@@ -485,9 +622,16 @@ function LogDay({ questions, setQuestions }) {
 																					type="radio"
 																					name={question._id}
 																					value="False"
-																					onChange={(e) => onChangeBoolean(e.target.value, question._id)}
+																					onChange={(e) =>
+																						onChangeBoolean(
+																							e.target.value,
+																							question._id
+																						)
+																					}
 																				></input>
-																				<div className="boolean-text">False</div>
+																				<div className="boolean-text">
+																					False
+																				</div>
 																			</div>
 																		) : (
 																			<div className="boolean">
@@ -496,7 +640,12 @@ function LogDay({ questions, setQuestions }) {
 																					type="radio"
 																					name={question._id}
 																					value="True"
-																					onChange={(e) => onChangeBoolean(e.target.value, question._id)}
+																					onChange={(e) =>
+																						onChangeBoolean(
+																							e.target.value,
+																							question._id
+																						)
+																					}
 																				></input>
 																				<div className="boolean-text">True</div>
 																				<input
@@ -505,9 +654,16 @@ function LogDay({ questions, setQuestions }) {
 																					name={question._id}
 																					value="False"
 																					checked="checked"
-																					onChange={(e) => onChangeBoolean(e.target.value, question._id)}
+																					onChange={(e) =>
+																						onChangeBoolean(
+																							e.target.value,
+																							question._id
+																						)
+																					}
 																				></input>
-																				<div className="boolean-text">False</div>
+																				<div className="boolean-text">
+																					False
+																				</div>
 																			</div>
 																		)}
 																	</div>
@@ -515,29 +671,47 @@ function LogDay({ questions, setQuestions }) {
 																	''
 																)}
 															</div>
-														)))}
-													</div>
-												)}
-											</div>
-										) : question.type === 'text' ? (
-											<div>
-												{!(savedTextResponses.filter((filteredResponse) => (filteredResponse.date === selectedDate))).length ? (
-													<input
-														className="text-type"
-														key={`${Math.floor((Math.random() * 1000))}-min`}
-														defaultValue={""}
-														onChange={(e) => debounceOnChangeText(e.target.value, question._id)}
-													></input>
-												) : ((isEmpty(question._id, savedTextResponses.filter((filteredResponse) => (filteredResponse.date === selectedDate))))) ? (
-													<input
-														className="text-type"
-														key={`${Math.floor((Math.random() * 1000))}-min`}
-														defaultValue={""}
-														onChange={(e) => debounceOnChangeText(e.target.value, question._id)}
-													></input>
-												) : (
-													<div>
-														{(savedTextResponses.filter((filteredResponse) => (filteredResponse.date === selectedDate)).map((savedText) => (
+														))}
+												</div>
+											)}
+										</div>
+									) : question.type === 'text' ? (
+										<div>
+											{!savedTextResponses.filter(
+												(filteredResponse) =>
+													filteredResponse.date === selectedDate
+											).length ? (
+												<input
+													className="text-type"
+													key={`${Math.floor(Math.random() * 1000)}-min`}
+													defaultValue={''}
+													onChange={(e) =>
+														debounceOnChangeText(e.target.value, question._id)
+													}
+												></input>
+											) : isEmpty(
+													question._id,
+													savedTextResponses.filter(
+														(filteredResponse) =>
+															filteredResponse.date === selectedDate
+													)
+											  ) ? (
+												<input
+													className="text-type"
+													key={`${Math.floor(Math.random() * 1000)}-min`}
+													defaultValue={''}
+													onChange={(e) =>
+														debounceOnChangeText(e.target.value, question._id)
+													}
+												></input>
+											) : (
+												<div>
+													{savedTextResponses
+														.filter(
+															(filteredResponse) =>
+																filteredResponse.date === selectedDate
+														)
+														.map((savedText) => (
 															<div>
 																{savedText.date === selectedDate &&
 																savedText.di === question._id &&
@@ -559,13 +733,16 @@ function LogDay({ questions, setQuestions }) {
 																	''
 																)}
 															</div>
-														)))}
+														))}
 												</div>
 											)}
 										</div>
 									) : question.type === 'multiple-choice' ? (
 										<div>
-											{!savedMcqResponses.filter((filteredResponse) => filteredResponse.date === selectedDate).length ? (
+											{!savedMcqResponses.filter(
+												(filteredResponse) =>
+													filteredResponse.date === selectedDate
+											).length ? (
 												<div>
 													<div className="choices">
 														<input
@@ -573,9 +750,13 @@ function LogDay({ questions, setQuestions }) {
 															type="radio"
 															name={question._id}
 															value={question.choices[0]}
-															onChange={(e) => onChangeMcq(e.target.value, question._id)}
+															onChange={(e) =>
+																onChangeMcq(e.target.value, question._id)
+															}
 														></input>
-														<div className="mcq-text">{question.choices[0]}</div>
+														<div className="mcq-text">
+															{question.choices[0]}
+														</div>
 													</div>
 													<div className="choices">
 														<input
@@ -583,9 +764,13 @@ function LogDay({ questions, setQuestions }) {
 															type="radio"
 															name={question._id}
 															value={question.choices[1]}
-															onChange={(e) => onChangeMcq(e.target.value, question._id)}
+															onChange={(e) =>
+																onChangeMcq(e.target.value, question._id)
+															}
 														></input>
-														<div className="mcq-text">{question.choices[1]}</div>
+														<div className="mcq-text">
+															{question.choices[1]}
+														</div>
 													</div>
 													<div className="choices">
 														<input
@@ -593,47 +778,74 @@ function LogDay({ questions, setQuestions }) {
 															type="radio"
 															name={question._id}
 															value={question.choices[2]}
-															onChange={(e) => onChangeMcq(e.target.value, question._id)}
+															onChange={(e) =>
+																onChangeMcq(e.target.value, question._id)
+															}
 														></input>
-														<div className="mcq-text">{question.choices[2]}</div>
+														<div className="mcq-text">
+															{question.choices[2]}
+														</div>
 													</div>
 												</div>
-												) : ((isEmpty(question._id, savedMcqResponses.filter((filteredResponse) => (filteredResponse.date === selectedDate))))) ? (
-													<div>
-														<div className="choices">
-															<input
-																className="multiple-choice-type"
-																type="radio"
-																name={question._id}
-																value={question.choices[0]}
-																onChange={(e) => onChangeMcq(e.target.value, question._id)}
-															></input>
-															<div className="mcq-text">{question.choices[0]}</div>
-														</div>
-														<div className="choices">
-															<input
-																className="multiple-choice-type"
-																type="radio"
-																name={question._id}
-																value={question.choices[1]}
-																onChange={(e) => onChangeMcq(e.target.value, question._id)}
-															></input>
-															<div className="mcq-text">{question.choices[1]}</div>
-														</div>
-														<div className="choices">
-															<input
-																className="multiple-choice-type"
-																type="radio"
-																name={question._id}
-																value={question.choices[2]}
-																onChange={(e) => onChangeMcq(e.target.value, question._id)}
-															></input>
-															<div className="mcq-text">{question.choices[2]}</div>
+											) : isEmpty(
+													question._id,
+													savedMcqResponses.filter(
+														(filteredResponse) =>
+															filteredResponse.date === selectedDate
+													)
+											  ) ? (
+												<div>
+													<div className="choices">
+														<input
+															className="multiple-choice-type"
+															type="radio"
+															name={question._id}
+															value={question.choices[0]}
+															onChange={(e) =>
+																onChangeMcq(e.target.value, question._id)
+															}
+														></input>
+														<div className="mcq-text">
+															{question.choices[0]}
 														</div>
 													</div>
-												) : (
-													<div>
-														{(savedMcqResponses.filter((filteredResponse) => (filteredResponse.date === selectedDate)).map((savedMcq) => (
+													<div className="choices">
+														<input
+															className="multiple-choice-type"
+															type="radio"
+															name={question._id}
+															value={question.choices[1]}
+															onChange={(e) =>
+																onChangeMcq(e.target.value, question._id)
+															}
+														></input>
+														<div className="mcq-text">
+															{question.choices[1]}
+														</div>
+													</div>
+													<div className="choices">
+														<input
+															className="multiple-choice-type"
+															type="radio"
+															name={question._id}
+															value={question.choices[2]}
+															onChange={(e) =>
+																onChangeMcq(e.target.value, question._id)
+															}
+														></input>
+														<div className="mcq-text">
+															{question.choices[2]}
+														</div>
+													</div>
+												</div>
+											) : (
+												<div>
+													{savedMcqResponses
+														.filter(
+															(filteredResponse) =>
+																filteredResponse.date === selectedDate
+														)
+														.map((savedMcq) => (
 															<div>
 																{savedMcq.date === selectedDate &&
 																savedMcq.di === question._id &&
@@ -812,7 +1024,7 @@ function LogDay({ questions, setQuestions }) {
 																	''
 																)}
 															</div>
-														)))}
+														))}
 												</div>
 											)}
 										</div>
