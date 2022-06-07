@@ -177,55 +177,160 @@ function LogDay({ questions, setQuestions }) {
 		}
 	};
 
+	const deleteNumberResponse = async (idToDelete) => {
+		const data = await fetch('/api/number/responses/' + idToDelete, {
+			method: 'DELETE',
+		}).then((res) => res.json());
+		setSavedNumberResponses(savedNumberResponses.filter((numberResponse) => numberResponse._id !== idToDelete));
+		console.log("Deleted");
+	};
+
+	const deleteBooleanResponse = async (idToDelete) => {
+		const data = await fetch('/api/boolean/responses/' + idToDelete, {
+			method: 'DELETE',
+		}).then((res) => res.json());
+		setSavedBooleanResponses(savedBooleanResponses.filter((savedBooleanResponse) => savedBooleanResponse._id !== idToDelete));
+		console.log("Deleted");
+	};
+
+	const deleteTextResponse = async (idToDelete) => {
+		const data = await fetch('/api/text/responses/' + idToDelete, {
+			method: 'DELETE',
+		}).then((res) => res.json());
+		setSavedTextResponses(savedTextResponses.filter((textResponse) => textResponse._id !== idToDelete));
+		console.log("Deleted");
+	};
+
+	const deleteMcqResponse = async (idToDelete) => {
+		const data = await fetch('/api/mcq/responses/' + idToDelete, {
+			method: 'DELETE',
+		}).then((res) => res.json());
+		setSavedMcqResponses(savedMcqResponses.filter((mcqResponse) => mcqResponse._id !== idToDelete));
+		console.log("Deleted");
+	};
+
 	const addResponse = (date) => {
-		for (let i = 0; i < questions.length; i++) {
-			if (questions[i].type === 'number') {
-				const data = {
-					response: numberResponses[numberCounter2++],
-					date: date,
-					di: questions[i]._id,
-					type: questions[i].type,
-				};
-				createNumberResponseAPIMethod(data).then((response) => {
-					console.log('Response created');
-				});
+		if (savedNumberResponses.filter((filtered) => (filtered.date === selectedDate)).length ||
+				savedBooleanResponses.filter((filtered) => (filtered.date === selectedDate)).length ||
+				savedTextResponses.filter((filtered) => (filtered.date === selectedDate)).length ||
+				savedMcqResponses.filter((filtered) => (filtered.date === selectedDate)).length) {
+			if (savedNumberResponses.filter((filtered) => (filtered.date === selectedDate)).length) {
+				for (let n=0; n<savedNumberResponses.filter((filtered) => (filtered.date === selectedDate)).length; n++) {
+					deleteNumberResponse(savedNumberResponses.filter((filtered) => (filtered.date === selectedDate))[n]._id);
+				}
+			}
+			if (savedTextResponses.filter((filtered) => (filtered.date === selectedDate)).length) {
+				for (let t=0; t<savedTextResponses.filter((filtered) => (filtered.date === selectedDate)).length; t++) {
+					deleteTextResponse(savedTextResponses.filter((filtered) => (filtered.date === selectedDate))[t]._id);
+				}
+			}
+			if (savedBooleanResponses.filter((filtered) => (filtered.date === selectedDate)).length) {
+				for (let b=0; b<savedBooleanResponses.filter((filtered) => (filtered.date === selectedDate)).length; b++) {
+					deleteBooleanResponse(savedBooleanResponses.filter((filtered) => (filtered.date === selectedDate))[b]._id);
+				}
+			}
+			if (savedMcqResponses.filter((filtered) => (filtered.date === selectedDate)).length) {
+				for (let m=0; m<savedMcqResponses.filter((filtered) => (filtered.date === selectedDate)).length; m++) {
+					deleteMcqResponse(savedMcqResponses.filter((filtered) => (filtered.date === selectedDate))[m]._id);
+				}
 			}
 
-			else if (questions[i].type === 'boolean') {
-				const data = {
-					response: booleanResponses[booleanCounter2++],
-					date: date,
-					di: questions[i]._id,
-					type: questions[i].type,
-				};
-				createBooleanResponseAPIMethod(data).then((response) => {
-					console.log('Response created');
-				});
+			for (let i = 0; i < questions.length; i++) {
+				if (questions[i].type === 'number') {
+					const data = {
+						response: numberResponses[numberCounter2++],
+						date: date,
+						di: questions[i]._id,
+						type: questions[i].type,
+					};
+					createNumberResponseAPIMethod(data).then((response) => {
+						console.log('Response created');
+					});
+				}
+	
+				else if (questions[i].type === 'boolean') {
+					const data = {
+						response: booleanResponses[booleanCounter2++],
+						date: date,
+						di: questions[i]._id,
+						type: questions[i].type,
+					};
+					createBooleanResponseAPIMethod(data).then((response) => {
+						console.log('Response created');
+					});
+				}
+	
+				else if (questions[i].type === 'text') {
+					const data = {
+						response: textResponses[textCounter2++],
+						date: date,
+						di: questions[i]._id,
+						type: questions[i].type,
+					};
+					createTextResponseAPIMethod(data).then((response) => {
+						console.log('Response created');
+					});
+				} else {
+					const data = {
+						response: mcqResponses[mcqCounter2++],
+						date: date,
+						di: questions[i]._id,
+						type: questions[i].type,
+					};
+					createMcqResponseAPIMethod(data).then((response) => {
+						console.log('Response created');
+					});
+				}
 			}
-
-			else if (questions[i].type === 'text') {
-				const data = {
-					response: textResponses[textCounter2++],
-					date: date,
-					di: questions[i]._id,
-					type: questions[i].type,
-				};
-				createTextResponseAPIMethod(data).then((response) => {
-					console.log('Response created');
-				});
-			} else {
-				const data = {
-					response: mcqResponses[mcqCounter2++],
-					date: date,
-					di: questions[i]._id,
-					type: questions[i].type,
-				};
-				createMcqResponseAPIMethod(data).then((response) => {
-					console.log('Response created');
-				});
+		} else {
+			for (let i = 0; i < questions.length; i++) {
+				if (questions[i].type === 'number') {
+					const data = {
+						response: numberResponses[numberCounter2++],
+						date: date,
+						di: questions[i]._id,
+						type: questions[i].type,
+					};
+					createNumberResponseAPIMethod(data).then((response) => {
+						console.log('Response created');
+					});
+				}
+	
+				else if (questions[i].type === 'boolean') {
+					const data = {
+						response: booleanResponses[booleanCounter2++],
+						date: date,
+						di: questions[i]._id,
+						type: questions[i].type,
+					};
+					createBooleanResponseAPIMethod(data).then((response) => {
+						console.log('Response created');
+					});
+				}
+	
+				else if (questions[i].type === 'text') {
+					const data = {
+						response: textResponses[textCounter2++],
+						date: date,
+						di: questions[i]._id,
+						type: questions[i].type,
+					};
+					createTextResponseAPIMethod(data).then((response) => {
+						console.log('Response created');
+					});
+				} else {
+					const data = {
+						response: mcqResponses[mcqCounter2++],
+						date: date,
+						di: questions[i]._id,
+						type: questions[i].type,
+					};
+					createMcqResponseAPIMethod(data).then((response) => {
+						console.log('Response created');
+					});
+				}
 			}
 		}
-		alert('Saved');
 	};
 
 	const isEmpty = (id, arr) => {

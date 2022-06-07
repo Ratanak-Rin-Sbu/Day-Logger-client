@@ -165,6 +165,46 @@ export const getMcqResponsesAdminAPIMethod = () => {
 		.then(parseJSON);
 };
 
+// NOTE delete a number response
+export const deleteNumberResponseAPIMethod = (questionId) => {
+	return fetch(`/api/number/responses/${questionId}`, {
+		...defaultHeaders,
+		method: 'DELETE',
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+};
+
+// NOTE delete a boolean response
+export const deleteBooleanResponseAPIMethod = (questionId) => {
+	return fetch(`/api/boolean/responses/${questionId}`, {
+		...defaultHeaders,
+		method: 'DELETE',
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+};
+
+// NOTE delete a text response
+export const deleteTextResponseAPIMethod = (questionId) => {
+	return fetch(`/api/text/responses/${questionId}`, {
+		...defaultHeaders,
+		method: 'DELETE',
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+};
+
+// NOTE delete a mcq response
+export const deleteMcqResponseAPIMethod = (questionId) => {
+	return fetch(`/api/mcq/responses/${questionId}`, {
+		...defaultHeaders,
+		method: 'DELETE',
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+};
+
 // NOTE delete a question
 export const deleteQuestionAPIMethod = (questionId) => {
 	return fetch(`/api/questions/${questionId}`, {
