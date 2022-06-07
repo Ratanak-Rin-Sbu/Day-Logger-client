@@ -8,7 +8,7 @@ import {
 	getQuestionsAdminAPIMethod,
 	getTextResponsesAdminAPIMethod,
 	getUsersAPIMethod,
-	getMcqResponsesAdminAPIMethod
+	getMcqResponsesAdminAPIMethod,
 } from '../api/client';
 
 function Admin({ profile, setProfile }) {
@@ -22,7 +22,7 @@ function Admin({ profile, setProfile }) {
 	useEffect(() => {
 		getUsersAPIMethod().then((users) => {
 			setUsers(users);
-		})
+		});
 		getQuestionsAdminAPIMethod().then((questions) => {
 			setQuestions(questions);
 		});
@@ -49,45 +49,7 @@ function Admin({ profile, setProfile }) {
 		const arr = [...number, ...boolean, ...text, ...mcq];
 		console.dir(arr);
 		return arr;
-	}
-
-	// const getAllUsers = async () => {
-	// 	const fetchedUsers = await getUsersAPIMethod();
-	// 	console.table(fetchedUsers);
-	// 	setUsers(fetchedUsers);
-	// };
-
-	// const getTotalNumNR = async () => {
-	// 	const fetchedNR = await getNumberResponsesAPIMethod();
-	// 	console.log(
-	// 		'🚀 ~ file: Admin.js ~ line 33 ~ getTotalNumNR ~ fetchedNR',
-	// 		fetchedNR
-	// 	);
-	// };
-
-	// const getTotalNumBR = async () => {
-	// 	const fetchedBR = await getBooleanResponsesAPIMethod();
-	// 	console.log(
-	// 		'🚀 ~ file: Admin.js ~ line 41 ~ getTotalNumBR ~ fetchedBR',
-	// 		fetchedBR
-	// 	);
-	// };
-
-	// const getTotalNumTR = async () => {
-	// 	const fetchedTR = await getTextResponsesAPIMethod();
-	// 	console.log(
-	// 		'🚀 ~ file: Admin.js ~ line 49 ~ getTotalNumTR ~ fetchedTR',
-	// 		fetchedTR
-	// 	);
-	// };
-
-	// const getTotalNumMR = async () => {
-	// 	const fetchedMR = await getMcqResponsesAPIMethod();
-	// 	console.log(
-	// 		'🚀 ~ file: Admin.js ~ line 57 ~ getTotalNumMR ~ fetchedMR',
-	// 		fetchedMR
-	// 	);
-	// };
+	};
 
 	const deleteUser = async (userId) => {
 		console.log('DELETED USER');
@@ -96,16 +58,20 @@ function Admin({ profile, setProfile }) {
 		setUsers(fetchedUsers);
 	};
 
-	if (!questions.length && !users.length && !numbers.length && !booleans.length && !texts.length && !mcqs.length) {
-		return (
-			""
-		)
+	if (
+		!questions.length &&
+		!users.length &&
+		!numbers.length &&
+		!booleans.length &&
+		!texts.length &&
+		!mcqs.length
+	) {
+		return '';
 	} else {
 		return (
 			<div className="admin-wrapper">
 				{users.map((user) => (
 					<div className="user-info-wrapper" key={user._id}>
-
 						<div className="user-info-label">
 							<div className="info-box" id="user-name">
 								User Name:
@@ -129,14 +95,25 @@ function Admin({ profile, setProfile }) {
 								{user.email}
 							</div>
 							<div className="info-box" id="total-question">
-								{questions.filter((filteredQuestion) => (filteredQuestion.agent === user._id)).length}
+								{
+									questions.filter(
+										(filteredQuestion) => filteredQuestion.agent === user._id
+									).length
+								}
 							</div>
 							<div className="info-box" id="total-response">
-								{union(numbers, booleans, texts, mcqs).filter((filteredResponse) => (filteredResponse.agent === user._id)).length}
+								{
+									union(numbers, booleans, texts, mcqs).filter(
+										(filteredResponse) => filteredResponse.agent === user._id
+									).length
+								}
 							</div>
 						</div>
 						<div className="btn-delete-container">
-							<button id="btn-delete-users" onClick={() => deleteUser(user._id)}>
+							<button
+								id="btn-delete-users"
+								onClick={() => deleteUser(user._id)}
+							>
 								DELETE
 							</button>
 						</div>
@@ -145,7 +122,7 @@ function Admin({ profile, setProfile }) {
 			</div>
 		);
 	}
-	}
+}
 
 // router.get(
 //   "/users",
