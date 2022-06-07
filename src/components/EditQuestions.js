@@ -10,7 +10,6 @@ function EditQuestions({
 	addQuestion,
 	deleteQuestion,
 }) {
-
 	useEffect(() => {
 		getQuestionsAPIMethod().then((questions) => {
 			setQuestions(questions);
@@ -194,11 +193,6 @@ function EditQuestions({
 					</div>
 				))}
 			</div>
-			<input
-				className="save-questions"
-				type="submit"
-				value="Save"
-			/>
 		</div>
 	);
 }
