@@ -134,7 +134,7 @@ function Profile({
 								alt="user-profile"
 								src={
 									profile?.profileImageUrl ||
-									`${process.env.PUBLIC_URL}/assets/images/cat1.jpg`
+									`${process.env.PUBLIC_URL}/assets/images/default-prof-pic.jpg`
 								}
 							/>
 						</button>
