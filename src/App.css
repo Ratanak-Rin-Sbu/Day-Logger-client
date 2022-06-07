@@ -66,15 +66,15 @@ h2 {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-bottom: 10px;
+	margin-bottom: 7px;
 }
 
 #login-title h1 {
-	font-size: 30px;
+	font-size: 35px;
 }
 
 #login-title h2 {
-	font-size: 20px;
+	font-size: 18px;
 }
 
 #login-overlay {
