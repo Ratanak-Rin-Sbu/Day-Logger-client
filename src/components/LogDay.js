@@ -37,30 +37,21 @@ function LogDay({ questions, setQuestions }) {
 	let mcqCounter = 0;
 	let mcqCounter2 = 0;
 
-	// numberResponses.splice(0, numberResponses.length);
-	// booleanResponses.splice(0, numberResponses.length);
-	// textResponses.splice(0, textResponses.length);
-	// mcqResponses.splice(0, mcqResponses.length);
-
 	useEffect(() => {
 		getQuestionsAPIMethod().then((questions) => {
 			setQuestions(questions);
 		});
 		getNumberResponsesAPIMethod().then((responses) => {
 			setSavedNumberResponses(responses);
-			// setSavedNumberResponses([...savedNumberResponses, emptyNumber]);
 		});
 		getTextResponsesAPIMethod().then((responses) => {
 			setSavedTextResponses(responses);
-			// setSavedTextResponses([...savedTextResponses, emptyText]);
 		});
 		getBooleanResponsesAPIMethod().then((responses) => {
 			setSavedBooleanResponses(responses);
-			// setSavedBooleanResponses([...savedBooleanResponses, emptyBoolean]);
 		});
 		getMcqResponsesAPIMethod().then((responses) => {
 			setSavedMcqResponses(responses);
-			// setSavedMcqResponses([...savedMcqResponses, emptyMcq]);
 		});
 		setDate();
 	}, []);
@@ -358,7 +349,7 @@ function LogDay({ questions, setQuestions }) {
 		);
 	} else {
 		return (
-			<div className="logday-wrapper">
+			<div data-testid="logday" className="logday-wrapper">
 				<div className="date-wrapper">
 					<button className="btn-prev-date" onClick={getPrevDate}>
 						{'<'}
