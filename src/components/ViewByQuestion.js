@@ -153,7 +153,7 @@ const ViewByQuestion = ({
 											<Legend />
 											<Bar dataKey={question.choices[0]} fill="#8884d8" />
 											<Bar dataKey={question.choices[1]} fill="#82ca9d" />
-											<Bar dataKey={question.choices[2]} fill="#82cb8d" />
+											<Bar dataKey={question.choices[2]} fill="#4169e1" />
 										</BarChart>
 									)}
 								</div>
