@@ -112,7 +112,7 @@ ${questionStringArr.join('\n')}
 					View By Date
 				</label>
 				<button onClick={getExportMapArray} className="btn-csv">
-					CSV
+					Get a data CSV file
 				</button>
 			</div>
 

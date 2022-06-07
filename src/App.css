@@ -499,6 +499,12 @@ h2 {
 	padding: 0 !important;
 }
 
+.btn-csv {
+	border-radius: 5px;
+	padding: 5px;
+	background-color:#eaf6f6;
+}
+
 /* NOTE Admin section */
 .admin-wrapper {
 	padding: 50px;

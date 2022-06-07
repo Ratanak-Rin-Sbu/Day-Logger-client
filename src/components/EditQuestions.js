@@ -194,6 +194,11 @@ function EditQuestions({
 					</div>
 				))}
 			</div>
+			<input
+				className="save-questions"
+				type="submit"
+				value="Save"
+			/>
 		</div>
 	);
 }
